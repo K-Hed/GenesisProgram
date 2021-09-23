@@ -247,6 +247,8 @@ section.dark pre {
 
 img.img-fluid {
 	display:inline-block;
+	width: 265px;
+	height: 220px;
 }
 
 /* IE & Mozilla fix */
@@ -4124,7 +4126,9 @@ section.dark h2.owl-featured {
     -webkit-touch-callout: none; }
   .owl-carousel-2 .owl-item img {
     display: block;
-    width: 100%; }
+    width: 100%;
+	/* width: 285px; */
+ }
   .owl-carousel-2 .owl-nav.disabled,
   .owl-carousel-2 .owl-dots.disabled {
     display: none; }
@@ -4520,12 +4524,13 @@ section.dark h2.owl-featured {
 	width: 100%;
 	height: auto;
 }
+
 .owl-prev, .owl-next {
 	width: 15px;
 	height: 100px;
 	position: absolute;
 	top: 50%;
-	transform: translateY(-80%);
+	transform: translateY(-63%);
 	display: block !important;
 	border:0px solid black;
 }
