@@ -489,11 +489,12 @@ pre,
 img.img-fluid {
 	display:inline-block;
 	
+	/*
 	max-width: 280px;
 	height: 220px;
 	padding-right: 20px;
 
-	/*
+	
 	
 
 
@@ -4295,7 +4296,8 @@ section.dark .owl-carousel.featured a {
 
 /* thumnail */
 .owl-item .thumbnail>img {
-	width: 100%;
+	width: 285px;
+	/* width: 100%; */
 	height: auto;
 }
 .thumbnail>figure {
@@ -6853,7 +6855,7 @@ section#slider:not(.custom-form) .btn-default {
 	.nivo-nextNav,
 	.swiper-button-next {
 		right:-3px;
-		position: absolute;
+		/* position: absolute; */
 	}
 	.tp-leftarrow.round,
 	.flex-prev,
