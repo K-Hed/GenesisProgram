@@ -62,7 +62,7 @@
 
 					<div class="col-md-4">
 						<h6><i class="icon-heart"></i> WHY ROCKET ELEVATORS?</h6>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa. </p>
+                        <p>We are the best in the business with over 46 years of experience!</p>
 					</div>
 
 					<div class="col-md-4">
@@ -204,38 +204,42 @@
 
 
 			<!-- QUOTE -->
+            <!--
 			<section id="quote">
 				<div class="container">
-
+            -->
 					<header class="text-center mb-60">
 						<h2>Get a quote</h2>
-						<!--p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p-->
 						<hr />
 					</header>
 
-                    <div class="row">
+                    
+                    <div class="row" id="new_option">
                         <div class="col-md-8 col-sm-8">
                             <form id="form_user" action="php/contact.php" method="post" enctype="multipart/form-data">
                                 <fieldset>
                                     <input type="hidden" name="action" value="contact_send" />
                                     <div class="col-md-4">
+                    
                                         <label for="building_type">Building Type</label>
-                                        <select class="form-control pointer" name="contact[department]" onchange="validate(this);">
+                                        <select name="building" id="building_type" onchange="validate(this);">
                                             <option value="">--- Select ---</option>
                                             <option value="Residential">Residential</option>
                                             <option value="Commercial">Commercial</option>
                                             <option value="Corporate">Corporate</option>
                                             <option value="Hybrid">Hybrid</option>
                                         </select>
+                    
                                     </div>
                                 </fieldset>
                             </form>
                         </div>
-
                     </div>
-
-				</div>
-			</section>
+                    
+        <!--
+			</div>
+		</section>
+        -->
 			<!-- /QUOTE -->
 
 
@@ -320,6 +324,7 @@
 		<script>var plugin_path = 'assets/plugins/';</script>
 		<script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 
+        
 		<script src="assets/js/scripts.js"></script>
 		
 		<!-- STYLESWITCHER - REMOVE -->
