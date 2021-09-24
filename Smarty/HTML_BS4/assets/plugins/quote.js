@@ -32,5 +32,6 @@ function validate(sel) {
 
     const addToDiv = document.getElementById('new_option');
     addToDiv.appendChild(selectedResidential);
+    
   }
 }
