@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Rocket Elevators - Get A Quote</title>
+		<title>Rocket Elevators</title>
 		<meta name="description" content="" />
 		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
 
@@ -13,6 +13,7 @@
 		<!-- WEB FONTS : use %7C instead of | (pipe) -->
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600%7CRaleway:300,400,500,600,700%7CLato:300,400,400italic,600,700" rel="stylesheet" type="text/css" />
 
+		
 		<!-- CORE CSS -->
 		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
@@ -27,7 +28,7 @@
 		<!-- PAGE LEVEL SCRIPTS -->
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/color_scheme/yellow.css" rel="stylesheet" type="text/css" id="color_scheme" />
-        <link rel="icon" href="assets/images/rocket/favicon.ico">
+		<link rel="icon" href="assets/images/rocket/favicon.ico">
 	</head>
 
 	<!--
@@ -62,7 +63,7 @@
 
 					<div class="col-md-4">
 						<h6><i class="icon-heart"></i> WHY ROCKET ELEVATORS?</h6>
-                        <p>We are the best in the business with over 46 years of experience!</p>
+						<p>We are the best in the business with over 46 years of experience!</p>
 					</div>
 
 					<div class="col-md-4">
@@ -199,11 +200,46 @@
 
 
 
+
 			<hr class="m-0" /><!-- 1px line separator -->
 
 
+			<!-- BUTTON CALLOUT -->
+			<!--a href="#" class="btn btn-xlg btn-primary fs-20 fullwidth m-0 rad-0 p-40">
+				<span class="font-lato fs-30">
+					Did Rocket Elevators convinced you? 
+					<strong>Contact us &raquo;</strong>
+				</span>
+			</a-->
+			<!-- /BUTTON CALLOUT -->
 
-            			<!-- CONTACT -->
+
+			
+
+			<!-- Parallax -->
+			
+			<section class="parallax parallax-1" style="background-image: url('assets/images/rocket/AdobeStock_53477661.jpeg');">
+				<div class="overlay dark-5"><!-- dark overlay [1 to 9 opacity] --></div>
+
+				<div class="container">
+
+					<div class="text-center">
+						<h2 class="fs-40 fw-300">Elevator Builder Since 1976</h2>
+						<a class="btn btn-default btn-lg" href="quote.html">GET A QUOTE <i class="fa fa-angle-right"></i></a> 
+						<!--index-quote.html-->
+						&nbsp; OR &nbsp; 
+						<a class="btn btn-primary btn-lg" href="index.html#services">OUR SERVICES <i class="fa fa-angle-right"></i></a>
+					</div>
+
+				</div>
+			</section>
+			<!-- /Parallax -->
+
+
+
+
+
+			<!-- CONTACT -->
 			<section id="contact">
 				<div class="container">
 
@@ -229,8 +265,7 @@
 									<div class="row">
 										<div class="col-md-6">
                                             <!-- <label for="contact_department">Department</label> -->
-                                            <select class="form-control pointer" name="building" id="building_type" onchange="validate(this);">
-                                            <!--select class="form-control pointer" name="contact[department]"-->
+                                            <select class="form-control pointer" name="contact[department]">
                                             <option value="">--- Select ---</option>
                                                 <option value="Residential">Residential</option>
                                                 <option value="Commercial">Commercial</option>
@@ -239,7 +274,7 @@
                                             </select>
 										</div>
 									</div>
-                                    <!--
+
 									<div class="row"  id="rowId">
 										<div class="col-md-6" id="colmd6Id">
 											<label for="contact:subject">Number of apartments in the building</label>
@@ -260,7 +295,7 @@
                                             <input required type="number" value="" class="form-control" id="number_basements">
                                         </div>
                                     </div>
-                                    -->
+
 								</fieldset>
 
 								<div class="row" id="rowId">
@@ -281,52 +316,11 @@
 			<!-- /CONTACT -->
 
 
-			<!-- QUOTE -->
-            <!--
-			<section id="quote">
-				<div class="container">
-            
-					<header class="text-center mb-60">
-						<h2>Get a quote</h2>
-						<hr />
-					</header>
-
-                    
-                    <div class="row" id="new_option">
-                        <div class="col-md-8 col-sm-8">
-                            
-
-                            <form id="form_user" action="php/contact.php" method="post" enctype="multipart/form-data">
-                                <fieldset>
-                                    <input type="hidden" name="action" value="contact_send" />
-                                    <div class="col-md-4">
-                    
-                                        <label for="building_type">Building Type</label>
-                                        <select name="building" id="building_type" onchange="validate(this);">
-                                            <option value="">--- Select ---</option>
-                                            <option value="Residential">Residential</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Corporate">Corporate</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                        </select>
-                    
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                    
-        
-			</div>
-		</section>
-        -->
-		<!-- /QUOTE -->
 
 
 			<!-- FOOTER -->
 			<footer id="footer">
 				<div class="container">
-
 
 					<div class="row">
 
@@ -377,7 +371,7 @@
 							<li>&bull;</li>
 							<li><a href="#">Privacy</a></li>
 						</ul>
-						&copy; All Rights Reserved, Rocket Elevators Inc.
+						&copy; All Rights Reserved, Rocket Elevators Inc. 
 					</div>
 				</div>
 
@@ -404,7 +398,6 @@
 		<script>var plugin_path = 'assets/plugins/';</script>
 		<script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
 
-        
 		<script src="assets/js/scripts.js"></script>
 		
 		<!-- STYLESWITCHER - REMOVE -->
@@ -418,8 +411,36 @@
 		<!-- PAGELEVEL SCRIPTS -->
 		<script src="assets/js/contact.js"></script>
 
-        <!--script src="assets/plugins/quote.js"></script-->
-        <script src="assets/plugins/quote2.js"></script>
-		<!--assets/plugins/quote_form.js-->
+		<!-- 
+			GMAP.JS 
+			http://hpneo.github.io/gmaps/
+		-->
+		<!--
+		<script src="//maps.google.com/maps/api/js?key=AIzaSyCqCn84CgZN6o1Xc3P4dM657HIxkX3jzPY"></script>
+		<script src="assets/plugins/gmaps.js"></script>
+		<script>
+
+			jQuery(document).ready(function(){
+
+				/**
+					@BASIC GOOGLE MAP
+				**/
+				var map2 = new GMaps({
+					div: '#map2',
+					lat: -12.043333,
+					lng: -77.028333,
+					scrollwheel: false
+				});
+
+				var marker = map2.addMarker({
+					lat: -12.043333,
+					lng: -77.028333,
+					title: 'Company, Inc.'
+				});
+
+			});
+
+		</script>
+		-->
 	</body>
 </html>

@@ -5,10 +5,12 @@
 		background: #0b64a0;
 	}
 	::-moz-selection {
-		background: #FAB702; /* Firefox */
+		/* background: #FAB702; */ /* Firefox */
+		background: #0b64a0;
 	}
 	::-webkit-selection {
-		background: #FAB702; /* Safari */
+		/* background: #FAB702; */ /* Safari */
+		background: #0b64a0;
 	}
 
 
