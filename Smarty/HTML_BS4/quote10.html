@@ -300,12 +300,15 @@
 									</div>
 								</div>
 								-->
+
+								<!--
                                 <div class="row" id="rowId">
 									<div class="col-md-6">
-                                        <label for="contact:subject">Number of Elevators</label>
+                                        <label for="contact:subject">Elevators required</label>
                                         <input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br>
 									</div>
 								</div>
+								-->
 
                                 <!--input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br-->
                                 <!--
@@ -354,96 +357,63 @@
 				</div>
 
 
-
-
                 <!-- RANGE OF ELEVATORS -->
                 <div class="container">
-
 					<form id="bookingForm" action="pack-hotel-booking.html" method="post">
-
 						<div class="row">
-
-
 							<div class="col-sm-4">
-
 								<h2 class="fs-17">Choose your elevator shaft:</h2>
-
-
 								<!--
 									+ IMPORTANT
 										- Change 'data-price' for each input radio button - used by assets/js/view/pack_hotel.js to calculate the total
 								-->
 								<ul class="booking-option-list">
-
 									<!--
 										elevator shaft
 									-->
 									<li>
 										<label class="radio block">
-
 											<input id="radio-input-shaft" data-price="7765" type="radio" name="radio-btn" value="STANDARD" checked="checked" onchange="getRadioButtons(); return false;">
 											<i></i>
-
 											<h3>Standard</h3>
-
 											<span class="fs-13">
 												<b>PRICE:</b> $7,765
 											</span>
-
 										</label>
 									</li>
-
 
 									<!--
 										elevator shaft
 									-->
 									<li>
 										<label class="radio block">
-
 											<input id="radio-input-shaft" data-price="12345" type="radio" name="radio-btn" value="PREMIUM" onchange="getRadioButtons(); return false;">
 											<i></i>
-
 											<h3>Premium</h3>
-
 											<span class="fs-13">
 												<b>PRICE:</b> $12,345
 											</span>
-
 										</label>
 									</li>
-
 
 									<!--
 										elevator shaft
 									-->
 									<li>
 										<label class="radio block">
-
 											<input id="radio-input-shaft" data-price="15400" type="radio" name="radio-btn" value="EXCELIUM" onchange="getRadioButtons(); return false;">
 											<i></i>
-
 											<h3>Excelium</h3>
-
 											<span class="fs-13">
 												<b>PRICE:</b> $15,400
 											</span>
-
 										</label>
 									</li>
-
-
 								</ul>
-
-
 							</div>
 
-
-
-
 						</div>
-
 					</form>
-
 				</div>
                 <!-- /RANGE OF ELEVATORS -->
 
@@ -452,7 +422,59 @@
 			<!-- /QUOTE -->
 
 
+			<!-- RESULTS -->
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-sm-8">
+							<div class="row" id="rowId">
+								<div class="col-md-6">
+									<label for="contact:subject">Elevators required</label>
+									<input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br>
+								</div>
+							</div>
 
+							<div class="row" id="rowId">
+								<div id="elevator-amount" class="col-md-4">
+									<label for="contact:subject">Elevators required</label>
+									<input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br>
+								</div>
+								<div id="elevator-unit-price" class="col-md-4">
+									<label for="contact:subject">Unit price of each elevator</label>
+									<input type="text" class="form-control" id="result" value="Unit price" name="" disabled><br><br>
+								</div>
+								<div id="elevator-total-price" class="col-md-4">
+									<label for="contact:subject">Total price of each elevators</label>
+									<input type="text" class="form-control" id="result" value="Total price" name="" disabled><br><br>
+								</div>
+							</div>
+
+							<div class="row" id="rowId">
+								<div class="col-md-6">
+									<label for="contact:subject">Total price of each elevators</label>
+									<input type="text" class="form-control" id="result" value="Total price" name="" disabled><br><br>
+								</div>
+							</div>
+
+							<div class="row" id="rowId">
+								<div class="col-md-6">
+									<label for="contact:subject">Installation fees</label>
+									<input type="text" class="form-control" id="result" value="Installation fees" name="" disabled><br><br>
+								</div>
+							</div>
+
+							<div class="row" id="rowId">
+								<div class="col-md-6">
+									<label for="contact:subject">Final Price</label>
+									<input type="text" class="form-control" id="result" value="Final Price" name="" disabled><br><br>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /RESULTS -->
 
 
 
