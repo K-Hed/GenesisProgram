@@ -4,10 +4,10 @@ let corporateIsShown = 0;
 let hybridIsShown = 0;
 let verbose = 0;
 var oldAvgDoorsPerFloor = -1;
-// let inputIdReferenceResidential = [ "number_apartments", "number_floors", "number_basements" ];
-//  let inputIdReferenceCommercial = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "number_elevator_cages" ];
-//  let inputIdReferenceCorporate = [ "number_tenant_companies", "number_floors", "number_basements", "number_parking_spaces", "max_occupants_per_floor" ];
-//  let inputIdReferenceHybrid = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "max_occupants_per_floor", "number_hours_activity" ];
+// let inputIdReferenceResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements" ];
+//  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number_elevator_cages" ];
+//  let inputIdReferenceCorporate = [ "number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy" ];
+//  let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
 // must have the id and the value
 var buildingDataArrayResidential = [ { inputId: "",  nApartments: "" },
@@ -60,7 +60,7 @@ function analyzeAnswers() {
   if (verbose) { console.log("allInputs.length = " + allInputs.length); }
  
   if (hybridIsShown) {
-    var inputTag = document.getElementById("number_hours_activity");
+    var inputTag = document.getElementById("business-hours");
     inputTag.addEventListener('input', function() {
         if (inputTag.innerText > 24) {
             alert("invalid");
@@ -68,7 +68,7 @@ function analyzeAnswers() {
     });
     console.log("inputTag = " + inputTag);
     for (var i = 0; i < allInputs.length; i++) {
-      if (allInputs.item(i).id == "number_hours_activity") {
+      if (allInputs.item(i).id == "business-hours") {
         if (verbose) { console.log("value inside number hours activity = " + allInputs.item(i).checkValidity()); } 
         //if (!allInputs[i].checkValidity())
           //if (!allInputs[i].checkValidity())
@@ -119,17 +119,17 @@ function giveQuote(inputId) {
         var inputApartments = 0;
         var inputFloors = 0;
         var inputBasements = 0;
-        if (inputId == "number_apartments") {
+        if (inputId == "number-of-apartments") {
             inputApartments = inputValue;
             buildingDataArrayResidential[0].inputId = inputId;
             buildingDataArrayResidential[0].nApartments = inputValue;
             //buildingDataArrayResidential.inputId = inputId;
             //buildingDataArrayResidential.nApartments.push(inputValue);
-        } else if (inputId == "number_floors") {
+        } else if (inputId == "number-of-floors") {
             inputFloors = inputValue;
             buildingDataArrayResidential[1].inputId = inputId;
             buildingDataArrayResidential[1].nFloors = inputValue;
-        } else if (inputId == "number_basements") {
+        } else if (inputId == "number-of-basements") {
             inputBasements = inputValue;
             buildingDataArrayResidential[2].inputId = inputId;
             buildingDataArrayResidential[2].nBasements = inputValue;
@@ -139,24 +139,24 @@ function giveQuote(inputId) {
         var inputApartments = 0;
         var inputFloors = 0;
         var inputBasements = 0;
-        if (inputId == "number_tenant_companies") {
+        if (inputId == "number-of-corporations") {
             buildingDataArrayCorporate[0].inputId = inputId;
             buildingDataArrayCorporate[0].nSeparateTenantCompanies = inputValue;
             //buildingDataArrayHybrid[0].inputId = inputId;
             //buildingDataArrayHybrid[0].nSeparateTenantCompanies = inputValue;
-        } else if (inputId == "number_floors") {
+        } else if (inputId == "number-of-floors") {
             inputFloors = inputValue;
             buildingDataArrayCorporate[1].inputId = inputId;
             buildingDataArrayCorporate[1].nFloors = inputValue;
             console.log("buildingDataArrayCorporate[1].nFloors = " + buildingDataArrayCorporate[1].nFloors);
-        } else if (inputId == "number_basements") {
+        } else if (inputId == "number-of-basements") {
             inputBasements = inputValue;
             buildingDataArrayCorporate[2].inputId = inputId;
             buildingDataArrayCorporate[2].nBasements = inputValue;
-        } else if (inputId == "number_parking_spaces") {
+        } else if (inputId == "number-of-parking-spots") {
             buildingDataArrayCorporate[3].inputId = inputId;
             buildingDataArrayCorporate[3].nParkingSpaces = inputValue;
-        } else if (inputId == "max_occupants_per_floor") {
+        } else if (inputId == "maximum-occupancy") {
             buildingDataArrayCorporate[4].inputId = inputId;
             buildingDataArrayCorporate[4].nOccupants = inputValue;
         } 
@@ -167,21 +167,21 @@ function giveQuote(inputId) {
         if (inputId == "distinct_businesses") {
             buildingDataArrayHybrid[0].inputId = inputId;
             buildingDataArrayHybrid[0].nDistinctBusinesses = inputValue;
-        } else if (inputId == "number_floors") {
+        } else if (inputId == "number-of-floors") {
             inputFloors = inputValue;
             buildingDataArrayHybrid[1].inputId = inputId;
             buildingDataArrayHybrid[1].nFloors = inputValue;
-        } else if (inputId == "number_basements") {
+        } else if (inputId == "number-of-basements") {
             inputBasements = inputValue;
             buildingDataArrayHybrid[2].inputId = inputId;
             buildingDataArrayHybrid[2].nBasements = inputValue;
-        } else if (inputId == "number_parking_spaces") {
+        } else if (inputId == "number-of-parking-spots") {
             buildingDataArrayHybrid[3].inputId = inputId;
             buildingDataArrayHybrid[3].nParkingSpaces = inputValue;
-        } else if (inputId == "max_occupants_per_floor") {
+        } else if (inputId == "maximum-occupancy") {
             buildingDataArrayHybrid[4].inputId = inputId;
             buildingDataArrayHybrid[4].nOccupants = inputValue;
-        } else if (inputId == "number_hours_activity") {
+        } else if (inputId == "business-hours") {
             buildingDataArrayHybrid[5].inputId = inputId;
             buildingDataArrayHybrid[5].nHoursActivity = inputValue;
         }
@@ -318,7 +318,7 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
                 console.log("nElevators = " + nElevators);
                 //if (buildingDataArrayHybrid[5].nHoursActivity > 24) {
                     //alert("Error");
-                   // document.getElementById("max_occupants_per_floor").innerText = document.getElementById("max_occupants_per_floor").validate;
+                   // document.getElementById("maximum-occupancy").innerText = document.getElementById("maximum-occupancy").validate;
                 //}
             }
             console.log("nElevatorsTotal = " + nElevatorsTotal);
@@ -346,7 +346,7 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
             console.log("nElevators = " + nElevators);
             //if (buildingDataArrayHybrid[5].nHoursActivity > 24) {
                 //alert("Error");
-               // document.getElementById("max_occupants_per_floor").innerText = document.getElementById("max_occupants_per_floor").validate;
+               // document.getElementById("maximum-occupancy").innerText = document.getElementById("maximum-occupancy").validate;
             //}
             console.log("nElevatorsTotal = " + nElevatorsTotal);
             document.getElementById("result").value = Math.ceil(nElevatorsTotal / 100);
@@ -384,11 +384,11 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
             var inputApartments = 0;
             var inputFloors = 0;
             var inputBasements = 0;
-            if (inputId == "number_apartments") {
+            if (inputId == "number-of-apartments") {
                 inputApartments = inputValue;
-            } else if (inputId == "number_floors") {
+            } else if (inputId == "number-of-floors") {
                 inputFloors = inputValue;
-            } else if (inputId == "number_basements") {
+            } else if (inputId == "number-of-basements") {
                 inputBasements = inputValue;
             }
         }
@@ -420,11 +420,11 @@ function validate(sel) {
 
   let rowArray = [ "first", "second", "third", "fourth", "fifth", "sixth" ];
   let secondDivArrayIds = [ "second_div", "fourth_div", "sixth_div", "eigth_div", "tenth_div", "twelveth" ];
-  //let inputIdReferenceForRetrievingValues = [ "number_apartments", "number_floors", "number_basements", "number_apartments", "number_floors" ];
-  let inputIdReferenceResidential = [ "number_apartments", "number_floors", "number_basements" ];
-  let inputIdReferenceCommercial = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "number_elevator_cages" ];
-  let inputIdReferenceCorporate = [ "number_tenant_companies", "number_floors", "number_basements", "number_parking_spaces", "max_occupants_per_floor" ];
-  let inputIdReferenceHybrid = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "max_occupants_per_floor", "number_hours_activity" ];
+  //let inputIdReferenceForRetrievingValues = [ "number-of-apartments", "number-of-floors", "number-of-basements", "number-of-apartments", "number-of-floors" ];
+  let inputIdReferenceResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements" ];
+  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number_elevator_cages" ];
+  let inputIdReferenceCorporate = [ "number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy" ];
+  let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
   if (selectedOption == "Residential") {
     if (commercialIsShown) {
@@ -502,7 +502,7 @@ function validate(sel) {
             //console.log("questionsCorporate[i]: " + questionsCorporate[i]);
             configure2(rowArray[i], questionsHybrid[i], secondDivArrayIds[i], inputIdReferenceHybrid[i]);
         }
-        var inputTag = document.getElementById("number_hours_activity");
+        var inputTag = document.getElementById("business-hours");
         inputTag.addEventListener('input', function() {
             console.log("inputTag: " + inputTag.value);
             if (inputTag.value > 24) {
