@@ -167,7 +167,7 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
             console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
 
             //nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-            console.log("nElevatorColumns = " + nElevatorColumns);
+             console.log("nElevatorColumns = " + nElevatorColumns);
 
             if (buildingDataArrayResidential[1].nFloors > 20) {
                 var toAdd = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
