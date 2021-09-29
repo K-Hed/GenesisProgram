@@ -421,15 +421,33 @@
 
 				<div class="container">
 					<div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <div class="row" id="rowId">
+								<div id="elevator-amount" class="col-md-4">
+									<label for="contact:subject">Elevators required</label>
+									<input id="number_elevators" type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br>
+								</div>
+								<div id="elevator-columns" class="col-md-4">
+									<label for="contact:subject">Elevator columns</label>
+									<input id="number_columns" type="text" class="form-control" id="result" value="Elevator Columns" name="" disabled>
+								</div>
+								<div id="elevator-per-column" class="col-md-4">
+									<label for="contact:subject">Elevators per column</label>
+									<input id="number_elevator_per_column" type="text" class="form-control" id="result" value="Elevator per column" name="" disabled>
+								</div>
+							</div>
+                        </div>
 						<div class="col-md-8 col-sm-8">
 							<div class="row" id="rowId">
+                                <!--
 								<div id="elevator-amount" class="col-md-4">
 									<label for="contact:subject">Elevators required</label>
 									<input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br>
 								</div>
+                                -->
 								<div id="elevator-unit-price" class="col-md-4">
 									<label for="contact:subject">Unit price of each elevator</label>
-									<input type="text" class="form-control" id="result" value="Unit price" name="" disabled>
+									<input type="text" class="form-control" id="result" value="Unit price" name="" disabled><br>
 								</div>
 								<div id="elevator-total-price" class="col-md-4">
 									<label for="contact:subject">Total price of each elevators</label>
@@ -466,9 +484,6 @@
 			<!--section-->
 
 			<!--/section-->
-
-
-
 
 
 			<!-- FOOTER -->
@@ -567,7 +582,7 @@
 		<script src="assets/js/contact.js"></script>
 
         <!--script src="assets/plugins/quote.js"></script-->
-        <script src="assets/plugins/quote10.js" defer="defer"></script>
+        <script src="assets/plugins/quote102.js" defer="defer"></script>
 		<!--assets/plugins/quote_form.js-->
 	</body>
 </html>

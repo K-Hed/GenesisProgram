@@ -10,50 +10,29 @@ var oldAvgDoorsPerFloor = -1;
 //  let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
 // must have the id and the value
-var buildingDataArrayResidential = [ { inputId: "",  nApartments: "" },
-                                     { inputId: "",  nFloors: "" },
-                                     { inputId: "",  nBasements: "" }
+var buildingDataArrayResidential = [ { inputId: "",  nApartments: 0 },
+                                     { inputId: "",  nFloors: 0 },
+                                     { inputId: "",  nBasements: 0 }
                                     ];
-var buildingDataArrayCommercial = [ { inputId: "",  nDistinctBusinesses: "" },
-                                    { inputId: "",  nFloors: "" },
-                                    { inputId: "",  nBasements: "" },
-                                    { inputId: "",  nParkingSpaces: "" },
-                                    { inputId: "",  nElevatorCages: "" }
+var buildingDataArrayCommercial = [ { inputId: "",  nDistinctBusinesses: 0 },
+                                    { inputId: "",  nFloors: 0 },
+                                    { inputId: "",  nBasements: 0 },
+                                    { inputId: "",  nParkingSpaces: 0 },
+                                    { inputId: "",  nElevatorCages: 0 }
                                     ];
-var buildingDataArrayCorporate =  [ { inputId: "",  nSeparateTenantCompanies: "" },
-                                    { inputId: "",  nFloors: "" },
-                                    { inputId: "",  nBasements: "" },
-                                    { inputId: "",  nParkingSpaces: "" },
-                                    { inputId: "",  nOccupants: "" }
+var buildingDataArrayCorporate =  [ { inputId: "",  nSeparateTenantCompanies: 0 },
+                                    { inputId: "",  nFloors: 0 },
+                                    { inputId: "",  nBasements: 0 },
+                                    { inputId: "",  nParkingSpaces: 0 },
+                                    { inputId: "",  nOccupants: 0 }
                                     ];
-var buildingDataArrayHybrid     =  [ { inputId: "",  nDistinctBusinesses: "" },
-                                    { inputId: "",  nFloors: "" },
-                                    { inputId: "",  nBasements: "" },
-                                    { inputId: "",  nParkingSpaces: "" },
-                                    { inputId: "",  nOccupants: "" },
-                                    { inputId: "",  nHoursActivity: "" }
+var buildingDataArrayHybrid     =  [ { inputId: "",  nDistinctBusinesses: 0 },
+                                    { inputId: "",  nFloors: 0 },
+                                    { inputId: "",  nBasements: 0 },
+                                    { inputId: "",  nParkingSpaces: 0 },
+                                    { inputId: "",  nOccupants: 0 },
+                                    { inputId: "",  nHoursActivity: 0 }
                                     ];
-/*
-var buildingDataArrayResidential = { inputId: "", 
-                                     nApartments: "",
-                                     inputId: "", 
-                                     nFloors: "",
-                                     inputId: "", 
-                                     nBasements: "" };
-
-var buildingDataArrayCommercial = { inputId: "",
-                                    distinctBusinesses: "",
-                                    inputId: "",
-                                    nFloors: "",
-                                    inputId: "", 
-                                    nBasements: "",
-                                    inputId: "", 
-                                    nParkingSpaces: "",
-                                    inputId: "", 
-                                    nElevatorCages: "" };
-
-var buildingDataArrayCommercial = { inputId: "", value: "" };
-*/
 
 function analyzeAnswers() {
   var allInputs = document.getElementsByTagName("input");
@@ -83,34 +62,11 @@ function analyzeAnswers() {
     console.log("inputTag.length = " + inputTag.length);
     console.log("inputTag = " + inputTag.innerText);
   }
-  //console.log("inputTag = " + inputTag);
-  //if (!inputTag.checkValidity()) {
-  //  alert("error");
-  //}
-/*
-  for (var i = 0; i < element.length; i++) {
-    for (var j = 0; j < inputTag.length; j++) {
-    }
-  }
-*/
 }
 
 function retrieveValue(inputId) {
     //console.log("inputId = ", inputId);
     return document.getElementById(inputId).value;
-}
-
-function addTobuildingDataArray(dataInput) {
-    buildingDataArray.push(dataInput);
-}
-
-function addToBuildingDataPriceArray(buildingType, dataArray) {
-    if (buildingType == "Residential") {
-        for (var i = 0; i< dataArray.length; i++) {
-            buildingDataArray.push(dataArray[i]);
-        }
-
-    }
 }
 
 function giveQuote(inputId) {
@@ -196,12 +152,11 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
     //giveQuote(inputId);
     var avgDoorsPerFloor = 0;
     var nElevatorShafts = 0;
-    var nColumns = 0;
-    var nOccupants = 0;
     var nElevators = 0;
-    var nElevatorColumns = 0;
+    var nElevatorColumns = 1;
     var nElevatorsPerColumn = 0;
     var nElevatorsTotal = 0;
+
     if (buildingDataArrayResidential[0].nApartments.length &&
         buildingDataArrayResidential[1].nFloors.length) {
 
@@ -211,22 +166,35 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
             nElevatorsPerColumn = Math.ceil(avgDoorsPerFloor / 6);
             console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
 
-            nElevatorColumns = buildingDataArrayResidential[1].nFloor / 20;
+            //nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
             console.log("nElevatorColumns = " + nElevatorColumns);
 
-            nElevators = nElevatorColumns * nElevatorsPerColumn;
-            
-            console.log("avgDoorsPerFloor = " + avgDoorsPerFloor);
-
             if (buildingDataArrayResidential[1].nFloors > 20) {
+                var toAdd = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
+                console.log("toAdd = " + toAdd);
                 nElevatorColumns += Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
                 nElevators += nElevatorColumns;
             } else if (buildingDataArrayResidential[1].nFloors <= 20) {
                 nElevatorColumns = 1;
             }
+
+            nElevators = nElevatorColumns * nElevatorsPerColumn;
+            
             console.log("nElevators = " + nElevators);
-            console.log("nElevatorColumns = " + nElevatorColumns);
-            document.getElementById("result").value = nElevators;
+            //console.log("nElevators = " + nElevators);
+            //console.log("nElevatorColumns = " + nElevatorColumns);
+            //document.getElementById("result").value = nElevators;
+
+            var allInputs = document.getElementsByTagName("input");
+            for (var i = 0; i < allInputs.length; i++) {
+                if (allInputs.item(i).id == "number_elevators") {
+                    allInputs.item(i).value = nElevators;
+                } else if (allInputs.item(i).id == "number_columns") {
+                    allInputs.item(i).value = nElevatorColumns;
+                } else if (allInputs.item(i).id == "number_elevator_per_column") {
+                    allInputs.item(i).value = nElevatorsPerColumn;
+                }
+            }
     }
 }
 
@@ -399,11 +367,6 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
 
 
 
-
-
-
-
-
         }
 
         // Find which one of the radio buttons is selected
@@ -439,6 +402,8 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
         if (verbose) { console.log("inputId = " + inputId); }
         if (verbose) { console.log("inputValue = " + inputValue); }
     });
+
+
     document.getElementById(labelAndInputParentDiv).appendChild(firstInput);
 
 
