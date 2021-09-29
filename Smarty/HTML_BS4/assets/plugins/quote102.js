@@ -5,7 +5,7 @@ let hybridIsShown = 0;
 let verbose = 0;
 var oldAvgDoorsPerFloor = -1;
 // let inputIdReferenceResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements" ];
-//  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number_elevator_cages" ];
+//  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number-of-elevators" ];
 //  let inputIdReferenceCorporate = [ "number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy" ];
 //  let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
@@ -166,11 +166,8 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
             nElevatorsPerColumn = Math.ceil(avgDoorsPerFloor / 6);
             console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
 
-
-
             nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
              //console.log("nElevatorColumns = " + nElevatorColumns);
-
 
              var col = nElevatorColumns;
 
@@ -178,22 +175,9 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
                  col -= 20;
                  nElevators++;
              }
-/*
-            if (buildingDataArrayResidential[1].nFloors > 20) {
-                var toAdd = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-                console.log("toAdd = " + toAdd);
-                nElevatorColumns += Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-                nElevators += nElevatorColumns;
-            } else if (buildingDataArrayResidential[1].nFloors <= 20) {
-                nElevatorColumns = 1;
-            }
-*/
             nElevators = nElevatorColumns * nElevatorsPerColumn;
             
             console.log("nElevators = " + nElevators + nElevatorColumns);
-            //console.log("nElevators = " + nElevators);
-            //console.log("nElevatorColumns = " + nElevatorColumns);
-            //document.getElementById("result").value = nElevators;
 
             var allInputs = document.getElementsByTagName("input");
             for (var i = 0; i < allInputs.length; i++) {
@@ -262,33 +246,6 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
 
         if (residentialIsShown) {
             calculateResidential(buildingDataArrayResidential, inputId);
-/*
-            if (buildingDataArrayResidential[0].nApartments.length &&
-                buildingDataArrayResidential[1].nFloors.length) {
-                    //console.log("buildingDataArrayResidential = " + buildingDataArrayResidential[2].nBasements);
-                    //avgDoorsPerFloor = buildingDataArrayResidential[0].nApartments / buildingDataArrayResidential[1].nFloors;
-                    //console.log("avgDoorsPerFloor = " + avgDoorsPerFloor);
-                    
-                    avgDoorsPerFloor = buildingDataArrayResidential[0].nApartments / buildingDataArrayResidential[1].nFloors;
-                    nElevatorShafts = Math.ceil(avgDoorsPerFloor / 6);
-                    if (oldAvgDoorsPerFloor != avgDoorsPerFloor) {
-                        console.log("avgDoorsPerFloor = " + avgDoorsPerFloor);
-                        oldAvgDoorsPerFloor = avgDoorsPerFloor;
-                    }
-
-                    if (buildingDataArrayResidential[1].nFloors > 20) {
-                        nElevatorShafts *= 2;
-                        nColumns += Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-                    } else if (buildingDataArrayResidential[1].nFloors <= 20) {
-                        nColumns = 1;
-                    }
-                    console.log("nElevatorShafts = " + nElevatorShafts);
-                    
-                    console.log("nColums = " + nColumns);
-                    document.getElementById("result").value = nElevatorShafts;
-
-            }
-*/
         } else if (corporateIsShown) {
             //giveQuote(inputId);
             /*
@@ -440,7 +397,7 @@ function validate(sel) {
   let secondDivArrayIds = [ "second_div", "fourth_div", "sixth_div", "eigth_div", "tenth_div", "twelveth" ];
   //let inputIdReferenceForRetrievingValues = [ "number-of-apartments", "number-of-floors", "number-of-basements", "number-of-apartments", "number-of-floors" ];
   let inputIdReferenceResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements" ];
-  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number_elevator_cages" ];
+  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number-of-elevators" ];
   let inputIdReferenceCorporate = [ "number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy" ];
   let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
