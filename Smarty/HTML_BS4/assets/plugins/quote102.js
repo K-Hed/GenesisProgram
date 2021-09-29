@@ -192,6 +192,17 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
     }
 }
 
+function calculateCommercial(buildingDataArrayCommercial, inputId) {
+    var inputValue = retrieveValue(inputId);
+    var allInputs = document.getElementsByTagName("input");
+    console.log("commercial = " + buildingDataArrayCommercial[4].nElevatorCages);
+    for (var i = 0; i < allInputs.length; i++) {
+        if (allInputs.item(i).id == "number_elevators") {
+            allInputs.item(i).value = buildingDataArrayCommercial[4].nElevatorCages || 0;
+        }
+    }
+}
+
 /* 
  @params:
  positionOfTagStr       -> rowArray[i]
@@ -334,6 +345,9 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
 
 
 
+        } else if (commercialIsShown) {
+            buildingDataArrayCommercial = giveQuote(inputId);
+            calculateCommercial(buildingDataArrayCommercial, inputId);
         }
 
         // Find which one of the radio buttons is selected
