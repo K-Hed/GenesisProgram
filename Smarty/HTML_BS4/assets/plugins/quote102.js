@@ -166,9 +166,19 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
             nElevatorsPerColumn = Math.ceil(avgDoorsPerFloor / 6);
             console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
 
-            //nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-             console.log("nElevatorColumns = " + nElevatorColumns);
 
+
+            nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
+             //console.log("nElevatorColumns = " + nElevatorColumns);
+
+
+             var col = nElevatorColumns;
+
+             while (col > 20) {
+                 col -= 20;
+                 nElevators++;
+             }
+/*
             if (buildingDataArrayResidential[1].nFloors > 20) {
                 var toAdd = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
                 console.log("toAdd = " + toAdd);
@@ -177,10 +187,10 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
             } else if (buildingDataArrayResidential[1].nFloors <= 20) {
                 nElevatorColumns = 1;
             }
-
+*/
             nElevators = nElevatorColumns * nElevatorsPerColumn;
             
-            console.log("nElevators = " + nElevators);
+            console.log("nElevators = " + nElevators + nElevatorColumns);
             //console.log("nElevators = " + nElevators);
             //console.log("nElevatorColumns = " + nElevatorColumns);
             //document.getElementById("result").value = nElevators;
