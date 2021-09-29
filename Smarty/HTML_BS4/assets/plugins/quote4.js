@@ -110,17 +110,32 @@ function analyzeAnswers() {
 */
 }
 
+// formId
 function addDivClassRow(parent) {
-  var divClassRow = document.createElement('div');
-  divClassRow.setAttribute("class", "row");
-  divClassRow.setAttribute("id", "rowId");
-  var allForms = document.getElementsByTagName('form');
+  //var allForms = document.getElementsByTagName('form');
+  //var allForms = document.getElementsByClassName("col-md-8 col-sm-8");
+  //var allForms = document.getElementById('formId');
+  //console.log("allForms.length = " + allForms.length);
+  console.log("parent.length = " + parent.length);
+/*
   for (var i = 0; i < allForms.length; i++) {
       if (allForms.item(i).id == "formId") {
+        var divClassRow = document.createElement('div');
+        divClassRow.setAttribute("class", "row");
+        divClassRow.setAttribute("id", "rowId");
         allForms.item(i).appendChild(divClassRow);
         break;
       }
   }
+*/
+    
+      var divClassRow = document.createElement('div');
+      divClassRow.setAttribute("class", "row");
+      divClassRow.setAttribute("id", "rowId");
+      parent.append(divClassRow);
+      //break;
+    
+
   //parent.appendChild(inputSpace);
   //parent.appendChild(divClassRow);
   ++number_of_div_row;
@@ -292,6 +307,31 @@ function removeBuildingTypeInfo(element) {
 
 }
 
+function hideInputTag(idToHide) {
+    var allDivs = document.getElementsByTagName("div");
+    for (var i = 0; i < allDivs.length; i++) {
+        if (allDivs.item(i).id == idToHide) {
+            document.getElementById("firstLabel").innerHTML = "Number of apartments in the building";
+            allDivs.item(i).style.display = 'none';
+        }
+    }
+}
+
+// function showInputTag(domElement) {
+function showInputTag(idToShow) {
+    var allDivs = document.getElementsByTagName("div");
+    //var allLabels = document.getElementById("firstLabel");
+    for (var i = 0; i < allDivs.length; i++) {
+        if (allDivs.item(i).id == idToShow) {
+            if (verbose) { console.log("allDivs.item(i).id = " + allDivs.item(i).id); }
+            if (residentialIsShown) {
+                document.getElementById("firstLabel").innerHTML = "Number of apartments in the building";
+            }
+            allDivs.item(i).style.display = 'block';
+        }
+    }
+}
+
 function validate(sel) {
   if (verbose) { console.log(sel.options[sel.selectedIndex].text); } 
   const selectedOption = sel.options[sel.selectedIndex].text;
@@ -300,6 +340,9 @@ function validate(sel) {
   //const div = document.div;
   //const divSelect = document.querySelector("div");
   const divSelect = document.querySelector("fieldset");
+  const allForms = document.querySelector("form");
+  const allFieldSets = document.querySelector("fieldset");
+  const fieldSetIDNUM = document.getElementById("fieldsetId");
   let residentialInfo = [
     {
       id: "number_apartments",
@@ -415,12 +458,18 @@ function validate(sel) {
       residentialIsShown = 1;
       //addBuildingTypeInfo(body, residentialInfo);
       //addBuildingTypeInfo(div, residentialInfo);
-      addBuildingTypeInfo(divSelect, residentialInfo);
+      //addBuildingTypeInfo(divSelect, residentialInfo);
+      //addBuildingTypeInfo(allForms, residentialInfo);
+
+      //showInputTag(allFieldSets);
+      //showInputTag("rowIdFirst");
+      addBuildingTypeInfo(fieldSetIDNUM, residentialInfo);
       //console.log("residentialIsShown = " + residentialIsShown);
     }
   } else if (selectedOption == "Commercial") {
     //console.log("in Commercial")
     if (residentialIsShown) {
+      hideInputTag("rowIdFirst");
       removeBuildingTypeInfo(residentialInfo);
       residentialIsShown = 0;
     } else if (corporateIsShown) {
@@ -432,7 +481,7 @@ function validate(sel) {
     }
     if (commercialIsShown == 0) {
       commercialIsShown = 1;
-      addBuildingTypeInfo(divSelect, commercialInfo);
+      //addBuildingTypeInfo(divSelect, commercialInfo);
     }
       //<input type="text" id="input" maxlength="15" />
       //<button type="submit" onclick="validate()">Validate</button>
@@ -470,21 +519,3 @@ function validate(sel) {
     }
   }
 }
-
-//const body = document.body;
-//const div = document.querySelector("div");
-//const spanHi = document.querySelector("#hi");
-//const spanBye = document.querySelector("#bye");
-//spanBye.remove();
-//div.append(spanBye);
-//body.append("Hello World", "Bye");
-//const div = document.createElement('div');
-//div.innerText = "Hello World";
-//const strong = document.createElement('strong');
-//strong.innerText = "Hello World 2";
-//div.innerHTML = "<strong>Hello World 2</strong>";
-//div.append(strong);
-//body.append(div);
-//const div = document.querySelector('div');
-//console.log(div.textContent);
-//console.log(div.innerText);

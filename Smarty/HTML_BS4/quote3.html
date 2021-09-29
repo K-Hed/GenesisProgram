@@ -68,11 +68,11 @@
 					<div class="col-md-4">
 						<h6><i class="fa-facheck"></i> RECENTLY VISITED</h6>
 						<ul class="list-unstyled">
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> This is a very long text, very very very very very very very very very very very very </a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Dolor sit amet,consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet,consectetur adipiscing elit</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Our Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Visit Us </a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Residential Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Commercial Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Awards</a></li>
 						</ul>
 					</div>
 
@@ -223,7 +223,7 @@
 
 
 							<form action="php/contact.php" method="post" enctype="multipart/form-data" id="formId">
-								<fieldset>
+								<fieldset id="fieldsetId">
 									<input type="hidden" name="action" value="contact_send" />
 
 									<div class="row">
@@ -239,28 +239,42 @@
                                             </select>
 										</div>
 									</div>
-                                    <!--
-									<div class="row"  id="rowId">
+                                    
+									<div class="row"  id="rowId" style="display: none;">
 										<div class="col-md-6" id="colmd6Id">
 											<label for="contact:subject">Number of apartments in the building</label>
 											<input required type="number" value="" class="form-control" id="number_apartments">
 										</div>
 									</div>
 
-                                    <div class="row" id="rowId">
+                                    <div class="row" id="rowId" style="display: none;">
                                         <div class="col-md-6" id="colmd6Id">
-                                            <label for="contact:subject">Number of floors, excluding basements</label>
+                                            <label for="contact:subject"></label>
                                             <input required type="number" value="" class="form-control" id="number_floors">
                                         </div>
                                     </div>
 
-                                    <div class="row" id="rowId">
+                                    <div class="row" id="rowId" style="display: none;">
                                         <div class="col-md-6" id="colmd6Id">
-                                            <label for="contact:subject">Number of basements in the building</label>
+                                            <label for="contact:subject"></label>
                                             <input required type="number" value="" class="form-control" id="number_basements">
                                         </div>
                                     </div>
-                                    -->
+
+									<div class="row"  id="rowId" style="display: none;">
+										<div class="col-md-6" id="colmd6Id">
+											<label for="contact:subject"></label>
+											<input required type="number" value="" class="form-control" id="number_apartments">
+										</div>
+									</div>
+
+                                    <div class="row" id="rowId" style="display: none;">
+                                        <div class="col-md-6" id="colmd6Id">
+                                            <label for="contact:subject"></label>
+                                            <input required type="number" value="" class="form-control" id="number_floors">
+                                        </div>
+                                    </div>
+                                    
 								</fieldset>
 
 								<div class="row" id="rowId">
@@ -280,47 +294,6 @@
 			</section>
 			<!-- /CONTACT -->
 
-
-			<!-- QUOTE -->
-            <!--
-			<section id="quote">
-				<div class="container">
-            
-					<header class="text-center mb-60">
-						<h2>Get a quote</h2>
-						<hr />
-					</header>
-
-                    
-                    <div class="row" id="new_option">
-                        <div class="col-md-8 col-sm-8">
-                            
-
-                            <form id="form_user" action="php/contact.php" method="post" enctype="multipart/form-data">
-                                <fieldset>
-                                    <input type="hidden" name="action" value="contact_send" />
-                                    <div class="col-md-4">
-                    
-                                        <label for="building_type">Building Type</label>
-                                        <select name="building" id="building_type" onchange="validate(this);">
-                                            <option value="">--- Select ---</option>
-                                            <option value="Residential">Residential</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Corporate">Corporate</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                        </select>
-                    
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                    
-        
-			</div>
-		</section>
-        -->
-		<!-- /QUOTE -->
 
 
 			<!-- FOOTER -->

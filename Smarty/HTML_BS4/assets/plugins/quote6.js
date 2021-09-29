@@ -10,71 +10,6 @@ let number_of_buttons = 0;
 let number_of_div_row = 0;
 let number_of_div_colmd8 = 0;
 
-function addLabelTag(parent, idText, text) {
-  const label = document.createElement('label');
-  label.setAttribute("id", idText);
-  label.setAttribute("for", "building_select");
-  label.innerHTML = "Write the number of " + text + ":";
-  var allDivs = document.getElementsByTagName('div');
-  for (var i = 0; i < allDivs.length; i++) {
-      if (allDivs.item(i).id == "colmd6Id") {
-          allDivs.item(i).appendChild(label);
-          break;
-      }
-  }
-  //parent.appendChild(label);
-  //parent.append(label);
-  ++number_of_labels;
-}
-
-function addTwoBreakTags(parent, idText) {
-  let breakLine1 = document.createElement('br');
-  if (idText.length) {
-    breakLine1.setAttribute("id", idText);
-  }
-  parent.appendChild(breakLine1);
-  //parent.append(breakLine1);
-  ++number_of_breaks;
-  //let breakLine2 = document.createElement('br');
-  //if (idText.length) {
-  //  breakLine2.setAttribute("id", idText);
-  //}
-  //parent.appendChild(breakLine2);
-  //parent.append(breakLine2);
-  //++number_of_breaks;
-}
-
-function addInputTag(parent, idText) {
-    const inputSpace = document.createElement('input');
-    inputSpace.setAttribute("type", "number");
-    inputSpace.setAttribute("class", "form-control");
-    inputSpace.setAttribute("id", idText);
-    if (hybridIsShown && idText == "number_hours_activity") {
-      inputSpace.setAttribute("max", "24");
-    }
-    //inputSpace.setAttribute("id", idText);
-    //document.querySelector('.col-md-6').getElementById('col-md-6').appendChild(inputSpace);
-    //document.querySelector('.col-md-6').appendChild(inputSpace);
-    var allDivs = document.getElementsByTagName('div');
-    for (var i = 0; i < allDivs.length; i++) {
-        if (allDivs.item(i).id == "colmd6Id") {
-            allDivs.item(i).appendChild(inputSpace);
-        }
-    }
-/*  
-  const inputSpace = document.createElement('input');
-  inputSpace.setAttribute("type", "number");
-  inputSpace.setAttribute("class", "form-control");
-  inputSpace.setAttribute("id", idText);
-  if (hybridIsShown && idText == "number_hours_activity") {
-    inputSpace.setAttribute("max", "24");
-  }
-  inputSpace.setAttribute("id", idText);
-  //parent.appendChild(inputSpace);
-  parent.append(inputSpace);
-*/
-  ++number_of_inputs;
-}
 
 function analyzeAnswers() {
   var allInputs = document.getElementsByTagName("input");
@@ -110,21 +45,6 @@ function analyzeAnswers() {
 */
 }
 
-function addDivClassRow(parent) {
-  var divClassRow = document.createElement('div');
-  divClassRow.setAttribute("class", "row");
-  divClassRow.setAttribute("id", "rowId");
-  var allForms = document.getElementsByTagName('form');
-  for (var i = 0; i < allForms.length; i++) {
-      if (allForms.item(i).id == "formId") {
-        allForms.item(i).appendChild(divClassRow);
-        break;
-      }
-  }
-  //parent.appendChild(inputSpace);
-  //parent.appendChild(divClassRow);
-  ++number_of_div_row;
-}
 
 
 function addDivClassColMD6(parent) {
@@ -292,6 +212,133 @@ function removeBuildingTypeInfo(element) {
 
 }
 
+function hideInputTag(idToHide) {
+    var allDivs = document.getElementsByTagName("div");
+    for (var i = 0; i < allDivs.length; i++) {
+        if (allDivs.item(i).id == idToHide) {
+            document.getElementById("firstLabel").innerHTML = "Number of apartments in the building";
+            allDivs.item(i).style.display = 'none';
+        }
+    }
+}
+
+// function showInputTag(domElement) {
+function showInputTag(idToShow) {
+    var allDivs = document.getElementsByTagName("div");
+    //var allLabels = document.getElementById("firstLabel");
+    for (var i = 0; i < allDivs.length; i++) {
+        if (allDivs.item(i).id == idToShow) {
+            if (verbose) { console.log("allDivs.item(i).id = " + allDivs.item(i).id); }
+            if (residentialIsShown) {
+                document.getElementById("firstLabel").innerHTML = "Number of apartments in the building";
+            }
+            allDivs.item(i).style.display = 'block';
+        }
+    }
+}
+
+/* 
+ @params:
+ positionOfTagStr,
+ innerLabelHtml,
+ labelNumStr,
+ inNumStr
+*/
+function configure(positionOfTagStr, labelNumStr, innerLabelHtml, inNumStr) {
+    var fields = document.getElementsByTagName("fieldset");
+    // document.getElementsByTagName("fieldset").item(0).id OK
+    var divIn = document.createElement("div");
+    divIn.setAttribute("class", "row");
+    var rowNameId = "rowId" + positionOfTagStr;
+    //divIn.setAttribute("id", "rowIdFirst");
+    divIn.setAttribute("id", rowNameId);
+    //divIn.setAttribute("class", "col-md-6");
+    //divIn.setAttribute("id", "colmd6Id");
+    fields.item(0).appendChild(divIn);
+    // document.getElementsByTagName("fieldset").item(0).appendChild(divIn);
+    var secondDivIn = document.createElement("div");
+    secondDivIn.setAttribute("class", "col-md-6");
+    secondDivIn.setAttribute("id", "colmd6Id");
+    //document.getElementById("rowIdFirst").appendChild(secondDivIn);
+    document.getElementById(rowNameId).appendChild(secondDivIn);
+
+    var labelFirst = document.createElement("label");
+    labelFirst.setAttribute("for", "contact:subject");
+    var labelNumberStr = labelNumStr + "label";
+    labelFirst.setAttribute("id", labelNumberStr);
+    // labelFirst.setAttribute("id", "firstLabel");
+    //labelFirst.innerHTML = "Number of apartments in building ";
+    labelFirst.innerHTML = innerLabelHtml;
+    document.getElementById("colmd6Id").appendChild(labelFirst);
+    //col-md-6" id="colmd6Id
+
+    var firstInput = document.createElement("input");
+    firstInput.setAttribute("type", "number");
+    firstInput.setAttribute("class", "form-control");
+    //firstInput.setAttribute("id", "first_input");
+    var inputNumberStr = inNumStr + "_input";
+    firstInput.setAttribute("id", inputNumberStr);
+    //document.getElementById("firstLabel").appendChild(firstInput);
+    document.getElementById("colmd6Id").appendChild(firstInput);
+}
+
+/* 
+ @params:
+ positionOfTagStr,
+ innerLabelHtml
+*/
+function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, inputId) {
+    //var fields = document.getElementsByTagName("fieldset");
+    // document.getElementsByTagName("fieldset").item(0).id OK
+    var divIn = document.createElement("div");
+    divIn.setAttribute("class", "row");
+    var rowNameId = positionOfTagStr + "_rowId";
+    //divIn.setAttribute("id", "first_rowId");
+    divIn.setAttribute("id", rowNameId);
+    //fields.item(0).appendChild(divIn);
+    document.getElementsByTagName("fieldset").item(0).appendChild(divIn);
+    var secondDivIn = document.createElement("div");
+    secondDivIn.setAttribute("class", "col-md-6");
+    secondDivIn.setAttribute("id", "colmd6Id");
+    secondDivIn.setAttribute("id", labelAndInputParentDiv); // == second_div here
+    //document.getElementById("rowIdFirst").appendChild(secondDivIn);
+    document.getElementById(rowNameId).appendChild(secondDivIn);
+
+    var labelFirst = document.createElement("label");
+    labelFirst.setAttribute("for", "contact:subject");
+    //var labelNumberStr = positionOfTagStr + "_label";
+    //labelFirst.setAttribute("id", labelNumberStr);
+    // labelFirst.setAttribute("id", "first_label");
+    //labelFirst.innerHTML = "Number of apartments in building ";
+    labelFirst.innerHTML = innerLabelHtml;
+    //document.getElementById("colmd6Id").appendChild(labelFirst);
+    //col-md-6" id="colmd6Id
+    document.getElementById(labelAndInputParentDiv).appendChild(labelFirst);
+
+    var firstInput = document.createElement("input");
+    firstInput.setAttribute("type", "number");
+    firstInput.setAttribute("class", "form-control");
+    //firstInput.setAttribute("id", "first_input");
+    //var inputNumberStr = positionOfTagStr + "_input";
+    //firstInput.setAttribute("id", inputNumberStr);
+    firstInput.setAttribute("id", inputId);
+    //document.getElementById("colmd6Id").appendChild(firstInput);
+    document.getElementById(labelAndInputParentDiv).appendChild(firstInput);
+}
+
+function removeRowIds(rowArray) {
+    var allDivs = document.getElementsByTagName("div");
+    for (var i = 0; i < allDivs.length; i++) {
+        for (var j = 0; j < rowArray.length; j++) {
+            var rowIdToRemove = rowArray[j] + "_rowId";
+            if (allDivs.item(i).id == rowIdToRemove) {
+                if (verbose) { console.log(allDivs.item(i).id); }
+                document.getElementById(rowIdToRemove).remove();
+            }
+        }
+    }
+}
+
 function validate(sel) {
   if (verbose) { console.log(sel.options[sel.selectedIndex].text); } 
   const selectedOption = sel.options[sel.selectedIndex].text;
@@ -300,6 +347,9 @@ function validate(sel) {
   //const div = document.div;
   //const divSelect = document.querySelector("div");
   const divSelect = document.querySelector("fieldset");
+  const allForms = document.querySelector("form");
+  const allFieldSets = document.querySelector("fieldset");
+  const fieldSetIDNUM = document.getElementById("fieldsetId");
   let residentialInfo = [
     {
       id: "number_apartments",
@@ -400,9 +450,21 @@ function validate(sel) {
     }
   ];
 
+  let rowArray = [ "first", "second", "third", "fourth", "fifth" ];
+  let secondDivArrayIds = [ "second_div", "fourth_div", "sixth_div", "eigth_div", "tenth_div" ];
+  //let inputIdReferenceForRetrievingValues = [ "number_apartments", "number_floors", "number_basements", "number_apartments", "number_floors" ];
+  let inputIdReferenceResidential = [ "number_apartments", "number_floors", "number_basements" ];
+  let inputIdReferenceCommercial = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "number_elevator_cages" ];
+  let inputIdReferenceCorporate = [ "number_tenant_companies", "number_floors", "number_basements", "number_parking_spaces", "number_elevator_cages", "max_occupants_per_floor" ];
+  let inputIdReferenceHybrid = [ "distinct_businesses", "number_floors", "number_basements", "number_parking_spaces", "number_elevator_cages", "max_occupants_per_floor", "number_hours_activity" ];
+
   if (selectedOption == "Residential") {
+      let questions = [ "Number of apartments", "Number of floors", "Number of basements" ];
     if (commercialIsShown) {
-      removeBuildingTypeInfo(commercialInfo);
+      if (document.getElementById("first_rowId")) {
+        document.getElementById("first_rowId").remove();
+      }
+      //removeBuildingTypeInfo(commercialInfo);
       commercialIsShown = 0;
     } else if (corporateIsShown) {
       removeBuildingTypeInfo(corporateInfo);
@@ -413,26 +475,102 @@ function validate(sel) {
     }
     if (residentialIsShown == 0) {
       residentialIsShown = 1;
-      //addBuildingTypeInfo(body, residentialInfo);
-      //addBuildingTypeInfo(div, residentialInfo);
-      addBuildingTypeInfo(divSelect, residentialInfo);
+/*
+      var fields = document.getElementsByTagName("fieldset");
+      // document.getElementsByTagName("fieldset").item(0).id OK
+      var divIn = document.createElement("div");
+      divIn.setAttribute("class", "row");
+      divIn.setAttribute("id", "rowIdFirst");
+      //divIn.setAttribute("class", "col-md-6");
+      //divIn.setAttribute("id", "colmd6Id");
+      fields.item(0).appendChild(divIn);
+      // document.getElementsByTagName("fieldset").item(0).appendChild(divIn);
+      var secondDivIn = document.createElement("div");
+      secondDivIn.setAttribute("class", "col-md-6");
+      secondDivIn.setAttribute("id", "colmd6Id");
+      document.getElementById("rowIdFirst").appendChild(secondDivIn);
+
+      var labelFirst = document.createElement("label");
+      labelFirst.setAttribute("for", "contact:subject");
+      labelFirst.setAttribute("id", "firstLabel");
+      labelFirst.innerHTML = "Number of apartments in building ";
+      document.getElementById("colmd6Id").appendChild(labelFirst);
+      //col-md-6" id="colmd6Id
+
+      var firstInput = document.createElement("input");
+      firstInput.setAttribute("type", "number");
+      firstInput.setAttribute("class", "form-control");
+      firstInput.setAttribute("id", "first_input");
+      //document.getElementById("firstLabel").appendChild(firstInput);
+      document.getElementById("colmd6Id").appendChild(firstInput);
+*/
+      //configure("second", "second", "Number of floors", "second");
+      for (var i = 0; i < questions.length; i++) {
+        configure2(rowArray[i], questions[i], secondDivArrayIds[i], inputIdReferenceCommercial[i]);
+      }
       //console.log("residentialIsShown = " + residentialIsShown);
     }
   } else if (selectedOption == "Commercial") {
     //console.log("in Commercial")
     if (residentialIsShown) {
-      removeBuildingTypeInfo(residentialInfo);
+        removeRowIds(rowArray);
+/*
+        var allDivs = document.getElementsByTagName("div");
+        for (var i = 0; i < allDivs.length; i++) {
+            for (var j = 0; j < rowArray.length; j++) {
+                var rowIdToRemove = rowArray[j] + "_rowId";
+                if (allDivs.item(i).id == rowIdToRemove) {
+                    console.log(allDivs.item(i).id);
+                    document.getElementById(rowIdToRemove).remove();
+                }
+            }
+        }
+*/
       residentialIsShown = 0;
     } else if (corporateIsShown) {
-      removeBuildingTypeInfo(corporateInfo);
+      document.getElementById("rowIdFirst").remove();
+      //removeBuildingTypeInfo(corporateInfo);
       corporateIsShown = 0;
     } else if (hybridIsShown) {
       removeBuildingTypeInfo(hybridInfo);
       hybridIsShown = 0;
     }
     if (commercialIsShown == 0) {
+        let questions = [ "Number of distinct businesses", "Number of floors", "Number of basements", "Number of parking spaces", "Number of elevator cages" ];
+        for (var i = 0; i < questions.length; i++) {
+            configure2(rowArray[i], questions[i], secondDivArrayIds[i], inputIdReferenceResidential[i]);
+        }
+/*
       commercialIsShown = 1;
-      addBuildingTypeInfo(divSelect, commercialInfo);
+      var fields = document.getElementsByTagName("fieldset");
+      // document.getElementsByTagName("fieldset").item(0).id OK
+      var divIn = document.createElement("div");
+      divIn.setAttribute("class", "row");
+      divIn.setAttribute("id", "rowIdSecond");
+      //divIn.setAttribute("class", "col-md-6");
+      //divIn.setAttribute("id", "colmd6Id");
+      fields.item(0).appendChild(divIn);
+      // document.getElementsByTagName("fieldset").item(0).appendChild(divIn);
+      var secondDivIn = document.createElement("div");
+      secondDivIn.setAttribute("class", "col-md-6");
+      secondDivIn.setAttribute("id", "colmd6Id");
+      document.getElementById("rowIdSecond").appendChild(secondDivIn);
+
+      var labelFirst = document.createElement("label");
+      labelFirst.setAttribute("for", "contact:subject");
+      labelFirst.setAttribute("id", "secondLabel");
+      labelFirst.innerHTML = "Number of distinct businesses ";
+      document.getElementById("colmd6Id").appendChild(labelFirst);
+      //col-md-6" id="colmd6Id
+
+      var firstInput = document.createElement("input");
+      firstInput.setAttribute("type", "number");
+      firstInput.setAttribute("class", "form-control");
+      firstInput.setAttribute("id", "second_input");
+      //document.getElementById("firstLabel").appendChild(firstInput);
+      document.getElementById("colmd6Id").appendChild(firstInput);
+      //addBuildingTypeInfo(divSelect, commercialInfo);
+*/
     }
       //<input type="text" id="input" maxlength="15" />
       //<button type="submit" onclick="validate()">Validate</button>
@@ -470,21 +608,3 @@ function validate(sel) {
     }
   }
 }
-
-//const body = document.body;
-//const div = document.querySelector("div");
-//const spanHi = document.querySelector("#hi");
-//const spanBye = document.querySelector("#bye");
-//spanBye.remove();
-//div.append(spanBye);
-//body.append("Hello World", "Bye");
-//const div = document.createElement('div');
-//div.innerText = "Hello World";
-//const strong = document.createElement('strong');
-//strong.innerText = "Hello World 2";
-//div.innerHTML = "<strong>Hello World 2</strong>";
-//div.append(strong);
-//body.append(div);
-//const div = document.querySelector('div');
-//console.log(div.textContent);
-//console.log(div.innerText);

@@ -23,6 +23,7 @@
 		<!-- THEME CSS -->
 		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
 		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/calculations.css" rel="stylesheet" type="text/css" />
 
 		<!-- PAGE LEVEL SCRIPTS -->
 		<link href="assets/css/header-1.css" rel="stylesheet" type="text/css" />
@@ -68,11 +69,11 @@
 					<div class="col-md-4">
 						<h6><i class="fa-facheck"></i> RECENTLY VISITED</h6>
 						<ul class="list-unstyled">
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> This is a very long text, very very very very very very very very very very very very </a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Lorem ipsum dolor sit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Dolor sit amet,consectetur adipiscing elit amet</a></li>
-							<li><a href="#"><i class="fa fa-angle-right"></i> Consectetur adipiscing elit amet,consectetur adipiscing elit</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Our Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Visit Us </a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Residential Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Commercial Services</a></li>
+							<li><a href="#"><i class="fa fa-angle-right"></i> Awards</a></li>
 						</ul>
 					</div>
 
@@ -166,7 +167,7 @@
 											SERVICES
 										</a>
 									</li>
-									<li><!-- WORK -->
+									<li><!-- PORTFOLIO -->
 										<a href="index.html#work">
 											PORTFOLIO
 										</a>
@@ -182,8 +183,13 @@
 										</a>
 									</li>
 									<li><!-- CONTACT -->
-										<a href="#contact">
-											CONTACT
+										<a href="index.html#quote">
+											QUOTE
+										</a>
+									</li>
+                                    <li><!-- CONTACT -->
+										<a href="pack-hotel-v2-booking.html">
+											HOTEL
 										</a>
 									</li>
 								</ul>
@@ -203,13 +209,12 @@
 
 
 
-            			<!-- CONTACT -->
-			<section id="contact">
+            <!-- QUOTE -->
+			<section id="quote">
 				<div class="container">
 
 					<header class="text-center mb-60">
-						<h2>Request for a Quote</h2>
-						<!--p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p-->
+						<h2>Request a Quote</h2>
 						<hr />
 					</header>
 
@@ -223,15 +228,15 @@
 
 
 							<form action="php/contact.php" method="post" enctype="multipart/form-data" id="formId">
-								<fieldset>
+								<fieldset id="fieldsetId">
 									<input type="hidden" name="action" value="contact_send" />
 
 									<div class="row">
 										<div class="col-md-6">
                                             <!-- <label for="contact_department">Department</label> -->
-                                            <select class="form-control pointer" name="building" id="building_type" onchange="validate(this);">
+                                            <select class="form-control pointer" name="building" id="building_type" onchange="validate(this); getRadioButtons(); return false;">
                                             <!--select class="form-control pointer" name="contact[department]"-->
-                                            <option value="">--- Select ---</option>
+                                                <option value="None">--- Select ---</option>
                                                 <option value="Residential">Residential</option>
                                                 <option value="Commercial">Commercial</option>
                                                 <option value="Corporate">Corporate</option>
@@ -239,88 +244,222 @@
                                             </select>
 										</div>
 									</div>
+
+                                    <!-- Number of apartments in the building -->
                                     <!--
-									<div class="row"  id="rowId">
-										<div class="col-md-6" id="colmd6Id">
-											<label for="contact:subject">Number of apartments in the building</label>
+									<div class="row"  id="first_rowId" style="display: none;">
+										<div class="col-md-6" id="colmd6Id" id="second_div">
+											<label for="contact:subject" ></label>
 											<input required type="number" value="" class="form-control" id="number_apartments">
 										</div>
 									</div>
-
-                                    <div class="row" id="rowId">
-                                        <div class="col-md-6" id="colmd6Id">
-                                            <label for="contact:subject">Number of floors, excluding basements</label>
+                                  
+                                    <div class="row" id="second_rowId" style="display: none;">
+                                        <div class="col-md-6" id="colmd6Id" id="fourth_div">
+                                            <label for="contact:subject"></label>
                                             <input required type="number" value="" class="form-control" id="number_floors">
                                         </div>
                                     </div>
 
-                                    <div class="row" id="rowId">
-                                        <div class="col-md-6" id="colmd6Id">
-                                            <label for="contact:subject">Number of basements in the building</label>
+                                    <div class="row" id="third_rowId" style="display: none;">
+                                        <div class="col-md-6" id="colmd6Id" id="sixth_div">
+                                            <label for="contact:subject"></label>
                                             <input required type="number" value="" class="form-control" id="number_basements">
+                                        </div>
+                                    </div>
+
+									<div class="row"  id="fourth_rowId" style="display: none;">
+										<div class="col-md-6" id="colmd6Id" id="eigth_div">
+											<label for="contact:subject"></label>
+											<input required type="number" value="" class="form-control" id="number_apartments">
+										</div>
+									</div>
+
+                                    <div class="row" id="fifth_rowId" style="display: none;">
+                                        <div class="col-md-6" id="colmd6Id" id="tenth_div">
+                                            <label for="contact:subject"></label>
+                                            <input required type="number" value="" class="form-control" id="number_floors">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="sixth_rowId" style="display: none;">
+                                        <div class="col-md-6" id="colmd6Id" id="twelveth_div">
+                                            <label for="contact:subject"></label>
+                                            <input required type="number" value="" class="form-control" id="number_floors">
                                         </div>
                                     </div>
                                     -->
 								</fieldset>
 
+								<!--
 								<div class="row" id="rowId">
 									<div class="col-md-12">
 										<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> SEND MESSAGE</button>
 									</div>
 								</div>
+								-->
+                                <div class="row" id="rowId">
+									<div class="col-md-6">
+                                        <label for="contact:subject">Number of Elevators</label>
+                                        <input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br>
+									</div>
+								</div>
+
+                                <!--input type="text" class="form-control" id="result" value="Number of Elevators" name="" disabled><br><br-->
+                                <!--
+                                <div class="row" id="rowId">
+									<div class="col-md-">
+                                        
+                                        <input type="radio" class="form-control" id="html" name="standard" value="Standard">
+                                        <label for="contact:subject">Standard</label><br>
+                                        <input type="radio" class="form-control" id="html" name="standard" value="Standard"><br>
+                                        <label >Premium</label><br>
+                                        <input type="radio" class="form-control" id="html" name="standard" value="Standard"><br>
+                                        <label >Excelium</label><br>
+									</div>
+								</div>
+                                
+
+
+                            -->
+								
+
 							</form>
 
 						</div>
 						<!-- /FORM -->
 
+                        <!--
+                        <div class="row" id="rowId">
+                            <div class="col-sm-4">
+                                <li>
+                                    <ul class="booking-option-list">
+                                        <label class="radio block" >Standard</label><br>
+                                        <input type="radio"  id="html" name="standard" value="Standard">
+                                        <label class="radio block" >Standard</label><br>
+                                        <input type="radio"  id="html" name="standard" value="Standard">
+                                        <label >Premium</label><br>
+                                        <input type="radio" class="form-control" id="html" name="standard" value="Standard"><br>
+                                        <label >Excelium</label><br>
+                                    </ul>
+                                </li>
+                            </div>
+                        </div>
+                        -->
 
 					</div>
 
 				</div>
+
+
+
+
+                <!-- RANGE OF ELEVATORS -->
+                <div class="container">
+
+					<form id="bookingForm" action="pack-hotel-booking.html" method="post">
+
+						<div class="row">
+
+
+							<div class="col-sm-4">
+
+								<h2 class="fs-17">Choose your elevator shaft:</h2>
+
+
+								<!--
+									+ IMPORTANT
+										- Change 'data-price' for each input radio button - used by assets/js/view/pack_hotel.js to calculate the total
+								-->
+								<ul class="booking-option-list">
+
+									<!--
+										elevator shaft
+									-->
+									<li>
+										<label class="radio block">
+
+											<input id="radio-input-shaft" data-price="7765" type="radio" name="radio-btn" value="STANDARD" checked="checked" onchange="getRadioButtons(); return false;">
+											<i></i>
+
+											<h3>Standard</h3>
+
+											<span class="fs-13">
+												<b>PRICE:</b> $7,765
+											</span>
+
+										</label>
+									</li>
+
+
+									<!--
+										elevator shaft
+									-->
+									<li>
+										<label class="radio block">
+
+											<input id="radio-input-shaft" data-price="12345" type="radio" name="radio-btn" value="PREMIUM" onchange="getRadioButtons(); return false;">
+											<i></i>
+
+											<h3>Premium</h3>
+
+											<span class="fs-13">
+												<b>PRICE:</b> $12,345
+											</span>
+
+										</label>
+									</li>
+
+
+									<!--
+										elevator shaft
+									-->
+									<li>
+										<label class="radio block">
+
+											<input id="radio-input-shaft" data-price="15400" type="radio" name="radio-btn" value="EXCELIUM" onchange="getRadioButtons(); return false;">
+											<i></i>
+
+											<h3>Excelium</h3>
+
+											<span class="fs-13">
+												<b>PRICE:</b> $15,400
+											</span>
+
+										</label>
+									</li>
+
+
+								</ul>
+
+
+							</div>
+
+
+
+
+						</div>
+
+					</form>
+
+				</div>
+                <!-- /RANGE OF ELEVATORS -->
+
+
 			</section>
-			<!-- /CONTACT -->
+			<!-- /QUOTE -->
 
 
-			<!-- QUOTE -->
-            <!--
-			<section id="quote">
-				<div class="container">
-            
-					<header class="text-center mb-60">
-						<h2>Get a quote</h2>
-						<hr />
-					</header>
 
-                    
-                    <div class="row" id="new_option">
-                        <div class="col-md-8 col-sm-8">
-                            
 
-                            <form id="form_user" action="php/contact.php" method="post" enctype="multipart/form-data">
-                                <fieldset>
-                                    <input type="hidden" name="action" value="contact_send" />
-                                    <div class="col-md-4">
-                    
-                                        <label for="building_type">Building Type</label>
-                                        <select name="building" id="building_type" onchange="validate(this);">
-                                            <option value="">--- Select ---</option>
-                                            <option value="Residential">Residential</option>
-                                            <option value="Commercial">Commercial</option>
-                                            <option value="Corporate">Corporate</option>
-                                            <option value="Hybrid">Hybrid</option>
-                                        </select>
-                    
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                    
-        
-			</div>
-		</section>
-        -->
-		<!-- /QUOTE -->
+
+
+			<!--section-->
+
+			<!--/section-->
+
+
+
 
 
 			<!-- FOOTER -->
@@ -419,7 +558,7 @@
 		<script src="assets/js/contact.js"></script>
 
         <!--script src="assets/plugins/quote.js"></script-->
-        <script src="assets/plugins/quote2.js"></script>
+        <script src="assets/plugins/quote10.js" defer="defer"></script>
 		<!--assets/plugins/quote_form.js-->
 	</body>
 </html>

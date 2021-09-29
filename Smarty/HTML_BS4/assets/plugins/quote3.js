@@ -110,17 +110,32 @@ function analyzeAnswers() {
 */
 }
 
+// formId
 function addDivClassRow(parent) {
-  var divClassRow = document.createElement('div');
-  divClassRow.setAttribute("class", "row");
-  divClassRow.setAttribute("id", "rowId");
-  var allForms = document.getElementsByTagName('form');
+  //var allForms = document.getElementsByTagName('form');
+  //var allForms = document.getElementsByClassName("col-md-8 col-sm-8");
+  //var allForms = document.getElementById('formId');
+  //console.log("allForms.length = " + allForms.length);
+  console.log("parent.length = " + parent.length);
+/*
   for (var i = 0; i < allForms.length; i++) {
       if (allForms.item(i).id == "formId") {
+        var divClassRow = document.createElement('div');
+        divClassRow.setAttribute("class", "row");
+        divClassRow.setAttribute("id", "rowId");
         allForms.item(i).appendChild(divClassRow);
         break;
       }
   }
+*/
+
+      var divClassRow = document.createElement('div');
+      divClassRow.setAttribute("class", "row");
+      divClassRow.setAttribute("id", "rowId");
+      parent.item(i).appendChild(divClassRow);
+      //break;
+    
+
   //parent.appendChild(inputSpace);
   //parent.appendChild(divClassRow);
   ++number_of_div_row;
@@ -300,6 +315,8 @@ function validate(sel) {
   //const div = document.div;
   //const divSelect = document.querySelector("div");
   const divSelect = document.querySelector("fieldset");
+  const allForms = document.querySelector("form");
+  const allFieldSets = document.querySelector("fieldset");
   let residentialInfo = [
     {
       id: "number_apartments",
@@ -415,7 +432,9 @@ function validate(sel) {
       residentialIsShown = 1;
       //addBuildingTypeInfo(body, residentialInfo);
       //addBuildingTypeInfo(div, residentialInfo);
-      addBuildingTypeInfo(divSelect, residentialInfo);
+      //addBuildingTypeInfo(divSelect, residentialInfo);
+      //addBuildingTypeInfo(allForms, residentialInfo);
+      addBuildingTypeInfo(allFieldSets, residentialInfo);
       //console.log("residentialIsShown = " + residentialIsShown);
     }
   } else if (selectedOption == "Commercial") {
