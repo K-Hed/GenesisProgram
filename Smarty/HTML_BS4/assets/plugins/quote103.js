@@ -557,28 +557,53 @@ function getRadioButtons() {
   console.log("unitPrice = " + unitPrice);
   console.log("fees = " + fees);
 
+  var secondInstallationFees = 0;
+  var secondInstallationFeesStr = "";
+
   console.log("unitPriceElevatorShaftRadioButton = " + unitPriceElevatorShaftRadioButton);
   if (unitPrice != 0) { //  && fees != 0
     installationFees = unitPrice * fees;
-    installationFeesStr = formatter.format(installationFees).toString();
-    installationFeesStr = commafy(installationFeesStr.replace(/[^0-9\.-]+/g, ""));
+    //var standard = unitPrice * numberOfElevators;
+    //var standardPourcent = (standard / 100);
+    //var standardFees = standardPourcent * unitPrice;
 
+    //installationFeesStr = formatter.format(installationFees).toString();
+    //installationFeesStr = commafy(installationFeesStr.replace(/[^0-9\.-]+/g, ""));
+
+    console.log("unitPrice = " + unitPrice);
     console.log("installationFees = " + installationFees);
 
-    priceResidential = unitPrice + installationFees;
+    priceResidential = parseFloat(unitPrice + installationFees);
     priceResidentialStr = formatter.format(priceResidential).toString();
     priceResidentialStr = commafy(priceResidentialStr.replace(/[^0-9\.-]+/g, ""));
 
-    elevatorPrice = unitPrice * parseInt(numberOfElevators);
+    console.log("priceResidential = " + priceResidential);
+
+    elevatorPrice = parseFloat(unitPrice * parseFloat(numberOfElevators));
     elevatorPriceStr = formatter.format(elevatorPrice).toString();
     elevatorPriceStr = commafy(elevatorPriceStr.replace(/[^0-9\.-]+/g, ""));
 
+    console.log("elevatorPrice = " + elevatorPrice);
+
+    //installationFees = 0;
+    //installationFees = parseFloat(elevatorPrice) * unitPrice;
+    //installationFeesStr = formatter.format(installationFees).toString();
+    //installationFeesStr = commafy(installationFeesStr.replace(/[^0-9\.-]+/g, ""));
+
+    secondInstallationFees = parseFloat(elevatorPrice * fees);
+    secondInstallationFeesStr = formatter.format(secondInstallationFees).toString();
+    secondInstallationFeesStr = commafy(secondInstallationFeesStr.replace(/[^0-9\.-]+/g, ""));
+
+    console.log("secondInstallationFees = " + secondInstallationFees);
+
     finalPrice = elevatorPrice + installationFees;
+    console.log("finalPrice = " + finalPrice);
     finalPriceStr = formatter.format(finalPrice).toString();
     finalPriceStr = commafy(finalPriceStr.replace(/[^0-9\.-]+/g, ""));
     document.getElementById("elevator_unit").value = priceResidentialStr + ' $';
     document.getElementById("elevator_total_price").value = elevatorPriceStr + ' $';
-    document.getElementById("installation_fees_total").value = installationFeesStr + ' $';
+    //document.getElementById("installation_fees_total").value = installationFeesStr + ' $';
+    document.getElementById("installation_fees_total").value = secondInstallationFeesStr + ' $';
     document.getElementById("final_elevator_price").value = finalPriceStr + ' $';
   }
 }
