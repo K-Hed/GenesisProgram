@@ -174,7 +174,11 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
 }
 
 function calculateCommercial(buildingDataArrayCommercial, inputId) {
+    unitPriceElevatorShaftRadioButton = 0;
+    installationFeesElevatorShaftRadio = 0;
+    
   var inputValue = retrieveValue(inputId);
+
   console.log("inputValue = " + inputValue);
   var allInputs = document.getElementsByTagName("input");
   console.log("commercial = " + buildingDataArrayCommercial[4].nElevatorCages);
@@ -187,6 +191,7 @@ function calculateCommercial(buildingDataArrayCommercial, inputId) {
   buildingDataArrayCommercial[1].nFloors = 0;
   buildingDataArrayCommercial[2].nBasements = 0;
   buildingDataArrayCommercial[3].nParkingSpaces = 0;
+  numberOfElevators = parseFloat(buildingDataArrayCommercial[4].nElevatorCages);
 }
 
 /* 
@@ -241,6 +246,10 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
         buildingDataArrayResidential = giveQuote(inputId);
         calculateResidential(buildingDataArrayResidential, inputId);
       } else if (corporateIsShown) {
+        unitPriceElevatorShaftRadioButton = 0;
+        installationFeesElevatorShaftRadio = 0;
+        numberOfElevators = 0;
+/*
         buildingDataArrayCorporate = giveQuote(inputId);
         console.log("buildingDataArrayHybrid floors = " + buildingDataArrayCorporate[1].nFloors);
         if (buildingDataArrayCorporate[1].nFloors > 20) {
@@ -274,6 +283,53 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
         numberOfElevators /= 100;
         document.getElementById("number_elevators").value = Math.ceil(numberOfElevators);
         //giveQuote(inputId);
+*/
+
+
+        buildingDataArrayCorporate = giveQuote(inputId);
+
+
+        console.log("buildingDataArrayHybrid[1].nFloors = " + buildingDataArrayCorporate[1].nFloors);
+        console.log("buildingDataArrayHybrid[2].nBasements = " + buildingDataArrayCorporate[2].nBasements);
+
+        // Number of columns = Number of floors divided by 20
+        nElevatorColumns = Math.ceil(buildingDataArrayCorporate[1].nFloors / 20);
+        console.log("elevator columns = " + nElevatorColumns);
+
+        // stories = Number of floors + number of basements
+
+        var stories = parseInt(parseInt(buildingDataArrayCorporate[1].nFloors) + parseInt(buildingDataArrayCorporate[2].nBasements));
+        console.log("stories = " + stories);
+
+        // Number of occupants = Number max occupants * 
+        nOccupants = buildingDataArrayCorporate[4].nOccupants * stories;
+        console.log("nOccupants = " + nOccupants);
+        //nElevators = nOccupants / 100;
+        //numberOfElevators = nOccupants / 100;
+        //nElevators = nOccupants / 100;
+
+        // Number of elevators = number of occupants / 1000;
+        nElevators = nOccupants / 1000;
+
+        // Number of Elevator columns = stories / 20;
+        nElevatorColumns = Math.ceil((stories) / 20);
+        console.log("nElevatorColumns = " + nElevatorColumns);
+
+        // Number of elevators per column = number of elevators / number of elevator column
+        nElevatorsPerColumn = Math.ceil(nElevators / nElevatorColumns);
+        console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
+
+        //nElevatorsTotal = nElevatorsPerColumn * nElevatorColumns;
+
+        // Number of total elevators = Number of elevators per column * number of elevator columns
+        nElevatorsTotal = nElevatorsPerColumn * nElevatorColumns;
+        //numberOfElevators = nElevatorsTotal;
+        console.log("nElevators = " + nElevators);
+        console.log("nElevatorsTotal = " + nElevatorsTotal);
+        //console.log("typedef numberOfElevators = " + typeof numberOfElevators);
+        //document.getElementById("number_elevators").value = numberOfElevators;
+        numberOfElevators = nElevatorsTotal;
+        document.getElementById("number_elevators").value = nElevatorsTotal;
       } else if (hybridIsShown) {
         buildingDataArrayHybrid = giveQuote(inputId);
 
