@@ -628,6 +628,5 @@ function clearInputs() {
     }
   }
 }
-
 // negative numbers
 // verfication data
