@@ -596,7 +596,7 @@ function getRadioButtons() {
 
     console.log("secondInstallationFees = " + secondInstallationFees);
 
-    finalPrice = elevatorPrice + installationFees;
+    finalPrice = elevatorPrice + secondInstallationFees;
     console.log("finalPrice = " + finalPrice);
     finalPriceStr = formatter.format(finalPrice).toString();
     finalPriceStr = commafy(finalPriceStr.replace(/[^0-9\.-]+/g, ""));
