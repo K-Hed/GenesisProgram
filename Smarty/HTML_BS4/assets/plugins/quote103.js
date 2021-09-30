@@ -133,6 +133,10 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
   var priceResidential = 0;
   var elevatorPrice = 0;
 
+  console.log("inputValue = " + inputValue);
+  if (inputValue < 0) {
+      numberOfElevators = 0;
+  }
   if (buildingDataArrayResidential[0].nApartments.length &&
       buildingDataArrayResidential[1].nFloors.length) {
 
@@ -171,6 +175,9 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
       }
     }
   }
+  if (inputValue < 0) {
+    numberOfElevators = 0;
+}
 }
 
 function calculateCommercial(buildingDataArrayCommercial, inputId) {
@@ -595,12 +602,20 @@ function getRadioButtons() {
     console.log("unitPrice = " + unitPrice);
     console.log("installationFees = " + installationFees);
 
+
+
     priceResidential = parseFloat(unitPrice + installationFees);
+
+
+    if (numberOfElevators < 0) { numberOfElevators = 0; priceResidential = 0; }
+
     priceResidentialStr = formatter.format(priceResidential).toString();
     priceResidentialStr = commafy(priceResidentialStr.replace(/[^0-9\.-]+/g, ""));
 
     console.log("priceResidential = " + priceResidential);
 
+    if (numberOfElevators < 0) { numberOfElevators = 0; }
+    
     elevatorPrice = parseFloat(unitPrice * parseFloat(numberOfElevators));
     elevatorPriceStr = formatter.format(elevatorPrice).toString();
     elevatorPriceStr = commafy(elevatorPriceStr.replace(/[^0-9\.-]+/g, ""));
