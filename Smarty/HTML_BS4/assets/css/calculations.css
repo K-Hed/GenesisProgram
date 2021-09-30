@@ -29,7 +29,7 @@ ul.booking-option-list {
 			border-width: 1px;
 			
 			-webkit-border-radius: 0 !important;
-					border-radius: 0 !important;
+					border-radius: 50% !important;
 		}
 			ul.booking-option-list>li .radio input + i:after {
 				top:5px;
