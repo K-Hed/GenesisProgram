@@ -249,42 +249,6 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
         unitPriceElevatorShaftRadioButton = 0;
         installationFeesElevatorShaftRadio = 0;
         numberOfElevators = 0;
-/*
-        buildingDataArrayCorporate = giveQuote(inputId);
-        console.log("buildingDataArrayHybrid floors = " + buildingDataArrayCorporate[1].nFloors);
-        if (buildingDataArrayCorporate[1].nFloors > 20) {
-          //nElevatorShafts *= 2;
-          var addToNColumns = 0;
-          addToNColumns = Math.ceil(buildingDataArrayCorporate[1].nFloors / 20);
-          for (var i = 0; i < addToNColumns; i++) {
-            nColumns++;
-          }
-        } else if (buildingDataArrayCorporate[1].nFloors <= 20) {
-          nColumns = 1;
-        }
-        nOccupants = buildingDataArrayCorporate[4].nOccupants * (buildingDataArrayCorporate[1].nFloors + buildingDataArrayCorporate[2].nBasements);
-        console.log("nElevators = " + nElevators);
-        //nElevators = nOccupants / 100;
-        //numberOfElevators = nOccupants / 100;
-        nElevators = nOccupants / 100;
-        console.log("buildingDataArrayCorporate[1].nFloors = " + buildingDataArrayCorporate[1].nFloors);
-        console.log("buildingDataArrayCorporate[2].nBasements = " + buildingDataArrayCorporate[2].nBasements);
-        nElevatorColumns = Math.ceil((buildingDataArrayCorporate[1].nFloors + buildingDataArrayCorporate[2].nBasements) / 20);
-        console.log("nElevatorColumns = " + nElevatorColumns);
-        nElevatorsPerColumn = nElevators / nElevatorColumns;
-        console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
-        //nElevatorsTotal = nElevatorsPerColumn * nElevatorColumns;
-        nElevatorsTotal = nElevatorsPerColumn * nElevatorColumns;
-        numberOfElevators = nElevatorsTotal;
-        console.log("nElevators = " + nElevators);
-        console.log("nElevatorsTotal = " + nElevatorsTotal);
-        //document.getElementById("result").value = Math.ceil(nElevatorsTotal / 100);
-        //document.getElementById("number_elevators").value = Math.ceil(nElevatorsTotal / 100);
-        numberOfElevators /= 100;
-        document.getElementById("number_elevators").value = Math.ceil(numberOfElevators);
-        //giveQuote(inputId);
-*/
-
 
         buildingDataArrayCorporate = giveQuote(inputId);
 
@@ -515,6 +479,7 @@ function validate(sel) {
     if (residentialIsShown) {
       removeRowIds(rowArray, inputIdReferenceResidential.length);
       residentialIsShown = 0;
+      uncheckRadioButtons();
     } else if (commercialIsShown) {
       removeRowIds(rowArray, inputIdReferenceCommercial.length);
       commercialIsShown = 0;
@@ -525,7 +490,9 @@ function validate(sel) {
       removeRowIds(rowArray, inputIdReferenceHybrid.length);
       hybridIsShown = 0;
     }
+    clearInputs();
   }
+  clearInputs();
   //if (document.getElementById("radio-input-shaft").checked) {
     //  var valeur = document.getElementById("radio-input-shaft").value;
     //  console.log("radioBtn = " + valeur);
@@ -550,7 +517,6 @@ function commafy(num) {
 
 function uncheckRadioButtons() {
   var elements = document.getElementsByTagName("input");
-
   for (var i = 0; i < elements.length; i++) {
     if (elements[i].type == "radio") {
       elements[i].checked = false;
