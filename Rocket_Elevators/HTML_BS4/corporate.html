@@ -186,7 +186,7 @@
 										</a>
 									</li>
 									<li><!-- CONTACT -->
-										<a href="#contact">
+										<a href="index.html#contact">
 											CONTACT
 										</a>
 									</li>
@@ -585,31 +585,47 @@
 									<div class="row">
 											<div class="col-md-4">
 												<label for="contact:name">Full Name *</label>
-												<input required type="text" value="" class="form-control" name="contact[name][required]" id="contact:name">
+												<input id="name" required type="text" value="" class="form-control" name="contact[name][required]">
 											</div>
 											<div class="col-md-4">
-												<label for="contact:email">E-mail Address *</label>
-												<input required type="email" value="" class="form-control" name="contact[email][required]" id="contact:email">
+												<label for="contact:email">E-mail *</label>
+												<input id="email" required type="email" value="" class="form-control" name="contact[email][required]">
 											</div>
 											<div class="col-md-4">
 												<label for="contact:phone">Phone</label>
-												<input type="text" value="" class="form-control" name="contact[phone]" id="contact:phone">
+												<input id="phone" type="text" value="" class="form-control" name="contact[phone]">
 											</div>
 									</div>
 									<div class="row">
-											<div class="col-md-8">
-												<label for="contact:subject">Subject *</label>
-												<input required type="text" value="" class="form-control" name="contact[subject][required]" id="contact:subject">
-											</div>
-											<div class="col-md-4">
-												<label for="contact_department">Department</label>
-												<select class="form-control pointer" name="contact[department]">
-													<option value="">--- Select ---</option>
-													<option value="Residential">Residential</option>
-													<option value="Commercial">Commercial</option>
-												</select>
-											</div>
+										<div class="col-md-6">
+											<label for="contact:email">Company Name</label>
+											<input id="company_name" required type="text" value="" class="form-control" name="contact[company-name]">
+										</div>
+										<div class="col-md-6">
+											<label for="contact:phone">Project Name *</label>
+											<input id="project_name" type="text" value="" class="form-control" name="contact[project-name]">
+										</div>
+
 									</div>
+									
+									<div class="row">
+										<div class="col-md-12">
+											<label for="contact:message">Project Description *</label>
+											<textarea required maxlength="10000" rows="4" class="form-control" name="contact[message]" id="contact:message"></textarea>
+										</div>
+									</div>	
+
+									<div class="row">
+										<div class="col-md-4">
+											<label id="department" for="contact_department">Department</label>
+											<select class="form-control pointer" name="contact[department]">
+												<option value="">--- Select ---</option>
+												<option value="Residential">Residential</option>
+												<option value="Commercial">Commercial</option>
+											</select>
+										</div>
+									</div>
+
 									<div class="row">
 											<div class="col-md-12">
 												<label for="contact:message">Message *</label>
@@ -618,7 +634,7 @@
 									</div>
 									<div class="row">
 											<div class="col-md-12">
-												<label for="contact:attachment">File Attachment</label>
+												<label id="attachment" for="contact:attachment">File Attachment</label>
 
 												<!-- custom file upload -->
 												<input class="custom-file-upload" type="file" id="file" name="contact[attachment]" id="contact:attachment" data-btn-text="Select a File" />
@@ -697,7 +713,8 @@
 
 							<!-- Small Description -->
 							<p>
-								We are the best in the business with over 46 years of experience! Call us Today!
+								We have the conviction that we create the most innovative and reliable products on the
+market. Contact us today for any questions you might have.
 							</p>
 							<h2>(514) 555-1234</h2>
 						</div>
