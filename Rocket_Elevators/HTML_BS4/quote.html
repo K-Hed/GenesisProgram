@@ -236,13 +236,13 @@
 									<div class="row">
 										<div class="col-md-6">
                                             <!-- <label for="contact_department">Department</label> -->
-                                            <select class="form-control pointer" name="building" id="building_type" onchange="validate(this); return false;">
+                                            <select class="form-control pointer" name="building" id="building-type" onchange="validate(this); return false;">
                                             <!--select class="form-control pointer" name="contact[department]"-->
                                                 <option value="None">--- Select ---</option>
-                                                <option value="Residential">Residential</option>
-                                                <option value="Commercial">Commercial</option>
-                                                <option value="Corporate">Corporate</option>
-                                                <option value="Hybrid">Hybrid</option>
+                                                <option id="residential" value="residential">Residential</option>
+                                                <option id="commercial" value="commercial">Commercial</option>
+                                                <option id="corporate" value="corporate">Corporate</option>
+                                                <option id="hybrid" value="hybrid">Hybrid</option>
                                             </select>
 										</div>
 									</div>

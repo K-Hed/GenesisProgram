@@ -39,22 +39,22 @@ function retrieveValue(inputId) {
 function giveQuote(inputId) {
   var inputValue = retrieveValue(inputId);
   if (residentialIsShown) {
-    if (inputId == "number-of-apartments") {
+    if (inputId == "number_of_apartments") {
       inputApartments = inputValue;
       buildingDataArrayResidential[0].inputId = inputId;
       buildingDataArrayResidential[0].nApartments = inputValue;
-    } else if (inputId == "number-of-floors") {
+    } else if (inputId == "number_of_floors") {
       inputFloors = inputValue;
       buildingDataArrayResidential[1].inputId = inputId;
       buildingDataArrayResidential[1].nFloors = inputValue;
-    } else if (inputId == "number-of-basements") {
+    } else if (inputId == "number_of_basements") {
       inputBasements = inputValue;
       buildingDataArrayResidential[2].inputId = inputId;
       buildingDataArrayResidential[2].nBasements = inputValue;
     }
     return buildingDataArrayResidential;
   } else if (commercialIsShown) {
-    if (inputId == "number-of-elevators") {
+    if (inputId == "number_of_elevators") {
       buildingDataArrayCommercial[4].inputId = inputId;
       buildingDataArrayCommercial[4].nElevatorCages = inputValue;
     } else {
@@ -66,22 +66,22 @@ function giveQuote(inputId) {
     }
     return buildingDataArrayCommercial;
   } else  if (corporateIsShown) {
-    if (inputId == "number-of-corporations") {
+    if (inputId == "number_of_corporations") {
       buildingDataArrayCorporate[0].inputId = inputId;
       buildingDataArrayCorporate[0].nSeparateTenantCompanies = inputValue;
-    } else if (inputId == "number-of-floors") {
+    } else if (inputId == "number_of_floors") {
       buildingDataArrayCorporate[1].inputId = inputId;
       buildingDataArrayCorporate[1].nFloors = inputValue;
       console.log("buildingDataArrayCorporate[1].nFloors = " +
                   buildingDataArrayCorporate[1].nFloors);
-    } else if (inputId == "number-of-basements") {
+    } else if (inputId == "number_of_basements") {
       inputBasements = inputValue;
       buildingDataArrayCorporate[2].inputId = inputId;
       buildingDataArrayCorporate[2].nBasements = inputValue;
-    } else if (inputId == "number-of-parking-spots") {
+    } else if (inputId == "number_of_parking_spots") {
       buildingDataArrayCorporate[3].inputId = inputId;
       buildingDataArrayCorporate[3].nParkingSpaces = inputValue;
-    } else if (inputId == "maximum-occupancy") {
+    } else if (inputId == "maximum_occupancy") {
       buildingDataArrayCorporate[4].inputId = inputId;
       buildingDataArrayCorporate[4].nOccupants = inputValue;
     } 
@@ -90,22 +90,22 @@ function giveQuote(inputId) {
     if (inputId == "distinct_businesses") {
       buildingDataArrayHybrid[0].inputId = inputId;
       buildingDataArrayHybrid[0].nDistinctBusinesses = inputValue;
-    } else if (inputId == "number-of-floors") {
+    } else if (inputId == "number_of_floors") {
       inputFloors = inputValue;
       buildingDataArrayHybrid[1].inputId = inputId;
       buildingDataArrayHybrid[1].nFloors = inputValue;
-    } else if (inputId == "number-of-basements") {
+    } else if (inputId == "number_of_basements") {
       inputBasements = inputValue;
       buildingDataArrayHybrid[2].inputId = inputId;
       buildingDataArrayHybrid[2].nBasements = inputValue;
-    } else if (inputId == "number-of-parking-spots") {
+    } else if (inputId == "number_of_parking_spots") {
       buildingDataArrayHybrid[3].inputId = inputId;
       buildingDataArrayHybrid[3].nParkingSpaces = inputValue;
-    } else if (inputId == "maximum-occupancy") {
+    } else if (inputId == "maximum_occupancy") {
       buildingDataArrayHybrid[4].inputId = inputId;
       buildingDataArrayHybrid[4].nOccupants = inputValue;
       //console.log("MAX OCCUPANCY = " + inputValue);
-    } else if (inputId == "business-hours") {
+    } else if (inputId == "business_hours") {
       buildingDataArrayHybrid[5].inputId = inputId;
       buildingDataArrayHybrid[5].nHoursActivity = inputValue;
     }
@@ -119,85 +119,95 @@ function calculateResidential(buildingDataArrayResidential, inputId) {
   var nElevatorColumns = 1;
   var nElevatorsPerColumn = 0;
 
-  console.log("inputValue = " + inputValue);
-  if (inputValue < 0) {
+  console.log("inputID RESIDENTIAL = " + inputId);
+  
+  if (inputId == "number_of_floors" || inputId == "number_of_apartments") {
+
+    console.log("inputValue = " + inputValue);
+    if (inputValue < 0) {
       numberOfElevators = 0;
-  }
-  if (buildingDataArrayResidential[0].nApartments.length &&
+    }
+    if (buildingDataArrayResidential[0].nApartments.length &&
       buildingDataArrayResidential[1].nFloors.length) {
 
-    var nFloors = parseInt(buildingDataArrayResidential[1].nFloors);
-    console.log("nFloors RESIDENTIAL = " + nFloors);
-    console.log("typeof nFloors = " + typeof nFloors);
-    if (nFloors < 0) {
+      var nFloors = parseInt(buildingDataArrayResidential[1].nFloors);
+      console.log("nFloors RESIDENTIAL = " + nFloors);
+      console.log("typeof nFloors = " + typeof nFloors);
+      if (nFloors < 0) {
+        numberOfElevators = 0;
+      } else {
+
+        avgDoorsPerFloor = buildingDataArrayResidential[0].nApartments /
+          buildingDataArrayResidential[1].nFloors;
+        console.log("avgDoorsPerFloor = " + avgDoorsPerFloor);
+
+        nElevatorsPerColumn = Math.ceil(avgDoorsPerFloor / 6);
+        console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
+
+        nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
+        //console.log("nElevatorColumns = " + nElevatorColumns);
+        var col = nElevatorColumns;
+
+        while (col > 20) {
+          col -= 20;
+          //nElevators++;
+          numberOfElevators++;
+        }
+        //nElevators = nElevatorColumns * nElevatorsPerColumn;
+        numberOfElevators = nElevatorColumns * nElevatorsPerColumn;
+
+        //console.log("nElevators = " + nElevators + nElevatorColumns);
+        console.log("numberOfElevators = " + numberOfElevators);
+
+      }
+
+      var allInputs = document.getElementsByTagName("input");
+      for (var i = 0; i < allInputs.length; i++) {
+        if (allInputs.item(i).id == "number_elevators") {
+          //allInputs.item(i).value = nElevators;
+          allInputs.item(i).value = numberOfElevators;
+        } else if (allInputs.item(i).id == "number_columns") {
+          allInputs.item(i).value = nElevatorColumns;
+        } else if (allInputs.item(i).id == "number_elevator_per_column") {
+          allInputs.item(i).value = nElevatorsPerColumn;
+        }
+      }
+
+    }
+    if (inputValue < 0) {
       numberOfElevators = 0;
-    } else {
-
-      avgDoorsPerFloor = buildingDataArrayResidential[0].nApartments /
-                         buildingDataArrayResidential[1].nFloors;
-      console.log("avgDoorsPerFloor = " + avgDoorsPerFloor);
-
-      nElevatorsPerColumn = Math.ceil(avgDoorsPerFloor / 6);
-      console.log("nElevatorsPerColumn = " + nElevatorsPerColumn);
-
-      nElevatorColumns = Math.ceil(buildingDataArrayResidential[1].nFloors / 20);
-      //console.log("nElevatorColumns = " + nElevatorColumns);
-      var col = nElevatorColumns;
-
-      while (col > 20) {
-        col -= 20;
-        //nElevators++;
-        numberOfElevators++;
-      }
-      //nElevators = nElevatorColumns * nElevatorsPerColumn;
-      numberOfElevators = nElevatorColumns * nElevatorsPerColumn;
-
-      //console.log("nElevators = " + nElevators + nElevatorColumns);
-      console.log("numberOfElevators = " + numberOfElevators);
-
-    }
-
-    var allInputs = document.getElementsByTagName("input");
-    for (var i = 0; i < allInputs.length; i++) {
-      if (allInputs.item(i).id == "number_elevators") {
-        //allInputs.item(i).value = nElevators;
-        allInputs.item(i).value = numberOfElevators;
-      } else if (allInputs.item(i).id == "number_columns") {
-        allInputs.item(i).value = nElevatorColumns;
-      } else if (allInputs.item(i).id == "number_elevator_per_column") {
-        allInputs.item(i).value = nElevatorsPerColumn;
-      }
     }
 
   }
-  if (inputValue < 0) {
-    numberOfElevators = 0;
-  }
+
 }
 
 function calculateCommercial(buildingDataArrayCommercial, inputId) {
     unitPriceElevatorShaftRadioButton = 0;
     installationFeesElevatorShaftRadio = 0;
     
-  var inputValue = retrieveValue(inputId);
+  if (inputId == "number_of_elevators") {
+    var inputValue = retrieveValue(inputId);
 
-  console.log("inputValue = " + inputValue);
-  var allInputs = document.getElementsByTagName("input");
-  console.log("commercial = " + buildingDataArrayCommercial[4].nElevatorCages);
-  numberOfElevators = parseFloat(buildingDataArrayCommercial[4].nElevatorCages);
-  if (numberOfElevators < 0) {
-    numberOfElevators = 0;
-  }
-  for (var i = 0; i < allInputs.length; i++) {
-    if (allInputs.item(i).id == "number_elevators") {
-      allInputs.item(i).value = numberOfElevators;
+    console.log("inputValue = " + inputValue);
+    var allInputs = document.getElementsByTagName("input");
+    console.log("commercial = " + buildingDataArrayCommercial[4].nElevatorCages);
+    numberOfElevators = parseFloat(buildingDataArrayCommercial[4].nElevatorCages);
+    if (numberOfElevators < 0) {
+      numberOfElevators = 0;
     }
+    for (var i = 0; i < allInputs.length; i++) {
+      if (allInputs.item(i).id == "number_elevators") {
+        allInputs.item(i).value = numberOfElevators;
+      }
+    }
+    buildingDataArrayCommercial[0].nDistinctBusinesses = 0;
+    buildingDataArrayCommercial[1].nFloors = 0;
+    buildingDataArrayCommercial[2].nBasements = 0;
+    buildingDataArrayCommercial[3].nParkingSpaces = 0;
   }
-  buildingDataArrayCommercial[0].nDistinctBusinesses = 0;
-  buildingDataArrayCommercial[1].nFloors = 0;
-  buildingDataArrayCommercial[2].nBasements = 0;
-  buildingDataArrayCommercial[3].nParkingSpaces = 0;
 }
+
 
 /* 
   @params:
@@ -207,24 +217,35 @@ labelAndInputParentDiv -> secondDivArrayIds[i]
 inputId                -> inputIdReference[Residential|Commercial|Corporate|Hybrid][i]
 i goes to number of questions that a building type has
 */
-function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, inputId) {
+function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, inputId, divInput) {
     //console.log("inputId = " + inputId);
     var divIn = document.createElement("div");
     divIn.setAttribute("class", "row");
     var rowNameId = positionOfTagStr + "_rowId";
-
     divIn.setAttribute("id", rowNameId);
     document.getElementsByTagName("fieldset").item(0).appendChild(divIn);
+
     var secondDivIn = document.createElement("div");
     secondDivIn.setAttribute("class", "col-md-6");
-    secondDivIn.setAttribute("id", "colmd6Id");
-    secondDivIn.setAttribute("id", labelAndInputParentDiv); // == second_div here
+    //secondDivIn.setAttribute("id", "colmd6Id");
+    secondDivIn.setAttribute("id", divInput);
+    //secondDivIn.setAttribute("id", labelAndInputParentDiv); // == second_div here
     document.getElementById(rowNameId).appendChild(secondDivIn);
+
+    //var thirdDivIn = document.createElement("div");
+    //thirdDivIn.setAttribute("id", divInput);
+    //document.getElementsByTagName("fieldset").item(0).appendChild(secondDivIn);
+    //var secondDivIn = document.createElement("div");
+    //secondDivIn.setAttribute("class", "col-md-6");
+    //secondDivIn.setAttribute("id", "colmd6Id");
+    //thirdDivIn.setAttribute("id", labelAndInputParentDiv); // == second_div here
+    //document.getElementById(secondDivIn).appendChild(thirdDivIn);
 
     var labelFirst = document.createElement("label");
     labelFirst.setAttribute("for", "contact:subject");
     labelFirst.innerHTML = innerLabelHtml;
-    document.getElementById(labelAndInputParentDiv).appendChild(labelFirst);
+    //document.getElementById(labelAndInputParentDiv).appendChild(labelFirst);
+    document.getElementById(divInput).appendChild(labelFirst);
 
     var firstInput = document.createElement("input");
     firstInput.setAttribute("type", "number");
@@ -346,7 +367,8 @@ function configure2(positionOfTagStr, innerLabelHtml, labelAndInputParentDiv, in
       if (verbose) { console.log("inputValue = " + inputValue); }
     });
 
-    document.getElementById(labelAndInputParentDiv).appendChild(firstInput);
+    //document.getElementById(labelAndInputParentDiv).appendChild(firstInput);
+    document.getElementById(divInput).appendChild(firstInput);
 
   }
 
@@ -369,12 +391,27 @@ function validate(sel) {
 
   let rowArray = [ "first", "second", "third", "fourth", "fifth", "sixth" ];
   let secondDivArrayIds = [ "second_div", "fourth_div", "sixth_div", "eigth_div", "tenth_div", "twelveth" ];
-  //let inputIdReferenceForRetrievingValues = [ "number-of-apartments", "number-of-floors", "number-of-basements", "number-of-apartments", "number-of-floors" ];
-  let inputIdReferenceResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements" ];
-  let inputIdReferenceCommercial = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number-of-elevators" ];
-  let inputIdReferenceCorporate = [ "number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy" ];
-  let inputIdReferenceHybrid = [ "distinct_businesses", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
+  //let inputIdReferenceForRetrievingValues = [ "number_of_apartments", "number_of_floors", "number_of_basements", "number_of_apartments", "number_of_floors" ];
+  // divId = [ "number_of_apartments", "number_of_floors", "number_of_basements"  ];
+  // divId = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "number_of_elevators"  ];
+  // divId = [ "number-of-corporations", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy"  ];
+  // divId = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy", "business_hours" ];
+ let divIdResidential = [ "number-of-apartments", "number-of-floors", "number-of-basements"  ];
+  let divIdCommercial = ["number-of-companies", "number-of-floors", "number-of-basements", "number-of-parking-spots", "number-of-elevators"];
+  let divIdCorporate = ["number-of-corporations", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy"];
+  let divIdHybrid = [ "number-of-companies", "number-of-floors", "number-of-basements", "number-of-parking-spots", "maximum-occupancy", "business-hours" ];
 
+
+  let inputIdReferenceResidential = [ "number_of_apartments", "number_of_floors", "number_of_basements"  ];
+  let inputIdReferenceCommercial = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "number_of_elevators"  ];
+  let inputIdReferenceCorporate  = [ "number_of_corporations", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy"  ];
+  let inputIdReferenceHybrid = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy", "business_hours" ];
+/*
+  let inputIdReferenceResidential = [ "number_of_apartments", "number_of_floors", "number_of_basements" ];
+  let inputIdReferenceCommercial = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "number_of_elevators" ];
+  let inputIdReferenceCorporate = [ "number-of-corporations", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy" ];
+  let inputIdReferenceHybrid = [ "distinct_businesses", "number_of_floors", "number_of_basements", "number_of_parking_spots", "maximum_occupancy", "business_hours" ];
+*/
   unitPriceElevatorShaftRadioButton = 0;
   installationFeesElevatorShaftRadio = 0;
   numberOfElevators = 0;
@@ -395,7 +432,7 @@ function validate(sel) {
       residentialIsShown = 1;
       let questionsResidential = [ "Number of apartments", "Number of floors", "Number of basements" ];
       for (var i = 0; i < questionsResidential.length; i++) {
-        configure2(rowArray[i], questionsResidential[i], secondDivArrayIds[i], inputIdReferenceResidential[i]);
+        configure2(rowArray[i], questionsResidential[i], secondDivArrayIds[i], inputIdReferenceResidential[i], divIdResidential[i]);
       }
     }
   } else if (selectedOption == "Commercial") {
@@ -416,7 +453,7 @@ function validate(sel) {
       commercialIsShown = 1;
       let questionsCommercial = [ "Number of distinct businesses", "Number of floors", "Number of basements", "Number of parking spaces", "Number of elevator cages" ];
       for (var i = 0; i < questionsCommercial.length; i++) {
-        configure2(rowArray[i], questionsCommercial[i], secondDivArrayIds[i], inputIdReferenceCommercial[i]);
+        configure2(rowArray[i], questionsCommercial[i], secondDivArrayIds[i], inputIdReferenceCommercial[i], divIdCommercial[i]);
       }
     }
   } else if (selectedOption == "Corporate") {
@@ -438,7 +475,7 @@ function validate(sel) {
       var questionsCorporate = [ "Number of separate tenants", "Number of floors", "Number of basements", "Number of parking spaces", "Maximum number of occupants per floor" ];
       for (var i = 0; i < questionsCorporate.length; i++) {
         if (verbose) { console.log("questionsCorporate[i]: " + questionsCorporate[i]); }
-        configure2(rowArray[i], questionsCorporate[i], secondDivArrayIds[i], inputIdReferenceCorporate[i]);
+        configure2(rowArray[i], questionsCorporate[i], secondDivArrayIds[i], inputIdReferenceCorporate[i], divIdCorporate[i]);
       }
     }
   } else if (selectedOption == "Hybrid") {
@@ -460,9 +497,9 @@ function validate(sel) {
       let questionsHybrid = [ "Number of distinct businesses", "Number of floors", "Number of basements", "Number of parking spaces", "Maximum number of occupants per floor", "Number of hours of activity" ];
       for (var i = 0; i < questionsHybrid.length; i++) {
         //console.log("questionsCorporate[i]: " + questionsCorporate[i]);
-        configure2(rowArray[i], questionsHybrid[i], secondDivArrayIds[i], inputIdReferenceHybrid[i]);
+        configure2(rowArray[i], questionsHybrid[i], secondDivArrayIds[i], inputIdReferenceHybrid[i], divIdHybrid[i]);
       }
-      var inputTag = document.getElementById("business-hours");
+      var inputTag = document.getElementById("business_hours");
       inputTag.addEventListener('input', function() {
         console.log("inputTag: " + inputTag.value);
         if (inputTag.value > 24) {
